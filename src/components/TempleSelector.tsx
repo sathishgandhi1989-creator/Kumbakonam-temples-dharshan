@@ -375,6 +375,7 @@ Please share my custom route map, timing schedule, and customized quote.`;
                       onChange={() => {}} // Handled by outer div
                       className="w-4 h-4 mt-1 accent-[#72130e] rounded cursor-pointer shrink-0"
                     />
+
                     <div>
                       <div className="flex flex-wrap items-center gap-1.5 mb-1">
                         <span className="text-[10px] font-bold uppercase tracking-wider text-[#b27a20] bg-[#fdf5e8] px-2 py-0.5 rounded border border-[#ebdcc7]">

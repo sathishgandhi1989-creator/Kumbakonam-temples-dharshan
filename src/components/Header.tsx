@@ -90,7 +90,8 @@ export const Header: React.FC<HeaderProps> = ({ onPlanClick, currentLang, onSele
       <div className="bg-[#5c0d0a] text-[#fff7e8] px-3 sm:px-6 lg:px-8 py-2 text-xs flex flex-wrap justify-between items-center gap-2 border-b border-[#72130e]/50 z-50 relative font-medium">
         {/* Left: Sacred Symbol & Tagline */}
         <div className="flex items-center gap-2">
-          <span className="text-[#f4bb4f] font-bold text-sm tracking-widest">卐 ॐ 卐</span>
+          <img src="/kumbam_logo.jpg" alt="Kumbam Emblem" className="w-4 h-4 rounded-full object-cover border border-[#f4bb4f]/50" />
+          <span className="text-[#f4bb4f] font-bold text-sm tracking-wider">ॐ ✦</span>
           <span className="font-medium text-[11px] sm:text-xs tracking-wide">
             {t.tagline}
           </span>
@@ -118,8 +119,12 @@ export const Header: React.FC<HeaderProps> = ({ onPlanClick, currentLang, onSele
           <div className="flex justify-between items-center h-20">
             {/* Brand Logo & Title */}
             <a href="#" className="flex items-center gap-3.5 group">
-              <div className="w-12 h-12 rounded-full bg-[#72130e] text-[#f4bb4f] flex items-center justify-center text-2xl font-bold shadow-md group-hover:scale-105 transition-transform border border-[#b27a20]/30 select-none">
-                卐
+              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-xl overflow-hidden shadow-md group-hover:scale-105 transition-transform border border-[#d8be9a] bg-white p-0.5 shrink-0 flex items-center justify-center">
+                <img
+                  src="/kumbam_logo.jpg"
+                  alt="Kumbakonam Temples Darshan Official Logo"
+                  className="w-full h-full object-contain rounded-lg"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="font-cormorant text-2xl sm:text-3xl font-bold tracking-wider text-[#6a120c] leading-none">

@@ -21,9 +21,9 @@ export const Hero: React.FC<HeroProps> = ({ onPlanClick, currentLang }) => {
           {/* Left Column: Heading, Subtitle, Navigation Actions */}
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f6e5c9] border border-[#dcbfa3] text-[#72130e] text-xs font-bold tracking-wider uppercase">
-              <span className="text-[#b27a20] text-sm font-bold">卐</span>
+              <span className="text-[#b27a20] text-sm font-bold">✦</span>
               <span>{t.hero.tag}</span>
-              <span className="text-[#b27a20] text-sm font-bold">卐</span>
+              <span className="text-[#b27a20] text-sm font-bold">✦</span>
             </div>
 
             <h1 className="font-cormorant text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#65100c] leading-none">
@@ -85,18 +85,17 @@ export const Hero: React.FC<HeroProps> = ({ onPlanClick, currentLang }) => {
             {/* Ambient Background Warm Halo */}
             <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-[#f4bb4f]/30 blur-2xl pointer-events-none" />
 
-            {/* Radiant Sun Sphere */}
-            <div className="relative mx-auto mb-3 w-20 h-20 rounded-full bg-gradient-to-tr from-[#e6a735] via-[#f9df90] to-[#fff4dd] shadow-[0_0_36px_rgba(230,167,53,0.5)] flex items-center justify-center">
-              <span className="text-[#8e2016]/60 text-3xl font-bold select-none">卐</span>
-            </div>
-
-            {/* Traditional Gopuram Icon */}
-            <div className="text-6xl sm:text-7xl leading-none select-none mb-3 filter drop-shadow-sm">
-              🛕
+            {/* Sacred Kumbam Official Emblem */}
+            <div className="relative mx-auto mb-4 w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden shadow-xl border-2 border-[#d2af7d] bg-[#fdf8f0] p-1 group">
+              <img
+                src="/kumbam_logo.jpg"
+                alt="Kumbakonam Temples Darshan Sacred Kumbam Logo"
+                className="w-full h-full object-contain rounded-xl hover:scale-105 transition-transform duration-500"
+              />
             </div>
 
             {/* Sacred Quote */}
-            <div className="font-cormorant text-xl italic font-semibold text-[#6b130d] leading-snug mb-2">
+            <div className="font-cormorant text-xl italic font-semibold text-[#6b130d] leading-snug mb-1">
               &ldquo;{t.tagline}&rdquo;
             </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, MapPin, Sparkles, Shield, Compass, BookOpen, Check } from 'lucide-react';
 import { Temple } from '../types';
+import { getTempleImage } from '../data/templeImages';
 
 interface TempleModalProps {
   temple: Temple | null;
@@ -16,6 +17,7 @@ export const TempleModal: React.FC<TempleModalProps> = ({
   onToggleSelect
 }) => {
   if (!temple) return null;
+  const imgUrl = temple.imageUrl || getTempleImage(temple.id);
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
@@ -23,25 +25,35 @@ export const TempleModal: React.FC<TempleModalProps> = ({
         className="bg-[#fffdf8] border border-[#d9c4a8] rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl relative transform transition-all"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header Ribbon */}
-        <div className="bg-gradient-to-r from-[#65120f] to-[#8a2117] text-white p-6 relative">
+        {/* Temple Photo Hero Banner */}
+        <div className="relative h-48 sm:h-56 w-full overflow-hidden bg-[#3a0906]">
+          <img
+            src={imgUrl}
+            alt={temple.nameEnglish}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#480c09] via-[#480c09]/60 to-transparent" />
+          
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full bg-black/20 hover:bg-black/40 text-white transition-colors"
+            className="absolute top-4 right-4 p-2 rounded-full bg-black/40 hover:bg-black/60 text-white transition-colors cursor-pointer z-10"
             aria-label="Close details"
           >
             <X className="w-5 h-5" />
           </button>
 
-          <span className="text-[11px] font-bold tracking-widest uppercase text-[#f4bb4f] bg-black/20 px-2.5 py-1 rounded-full inline-block mb-2">
-            Package {temple.packageId} · {temple.categoryTag}
-          </span>
-          <h3 className="font-cormorant text-2xl sm:text-3xl font-bold text-white mb-1">
-            {temple.nameEnglish}
-          </h3>
-          <p className="text-lg text-[#feddb0] font-medium font-cormorant">
-            {temple.nameTamil}
-          </p>
+          {/* Overlay titles */}
+          <div className="absolute bottom-4 left-6 right-6 text-white">
+            <span className="text-[11px] font-bold tracking-widest uppercase text-[#f4bb4f] bg-black/40 backdrop-blur-xs px-2.5 py-0.5 rounded-full inline-block mb-1 border border-white/10">
+              Package {temple.packageId} · {temple.categoryTag}
+            </span>
+            <h3 className="font-cormorant text-2xl sm:text-3xl font-bold text-white mb-0.5 drop-shadow-sm">
+              {temple.nameEnglish}
+            </h3>
+            <p className="text-base sm:text-lg text-[#feddb0] font-medium font-cormorant drop-shadow-sm">
+              {temple.nameTamil}
+            </p>
+          </div>
         </div>
 
         {/* Content Body */}
@@ -124,7 +136,7 @@ export const TempleModal: React.FC<TempleModalProps> = ({
                   : 'bg-[#72130e] text-white hover:bg-[#5c0d0a] shadow'
               }`}
             >
-              {isSelected ? '✓ In My Route (Remove)' : '卐 Add to My Route'}
+              {isSelected ? '✓ In My Route (Remove)' : '+ Add to My Route'}
             </button>
           </div>
         </div>

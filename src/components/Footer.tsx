@@ -16,8 +16,12 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
           {/* Brand Col */}
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-[#65120f] text-[#f4bb4f] flex items-center justify-center text-2xl font-bold border border-[#b27a20]/40 select-none">
-                卐
+              <div className="w-13 h-13 rounded-xl overflow-hidden border border-[#d8be9a] bg-white p-0.5 shrink-0 shadow-md flex items-center justify-center">
+                <img
+                  src="/kumbam_logo.jpg"
+                  alt="Kumbakonam Temples Darshan Official Logo"
+                  className="w-full h-full object-contain rounded-lg"
+                />
               </div>
               <div>
                 <strong className="block font-cormorant text-2xl font-bold tracking-wider text-white leading-none">
@@ -36,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
             </p>
             <div className="pt-2">
               <span className="inline-block text-[11px] font-bold text-[#f4bb4f] bg-[#470f0b] px-3 py-1 rounded-full border border-[#6b1e17]">
-                卐 {t.tagline} 卐
+                ✦ {t.tagline} ✦
               </span>
             </div>
           </div>
@@ -91,7 +95,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
           {/* Sacred Mission & Location Box */}
           <div className="bg-[#440c09] p-5 rounded-xl border border-[#5d1611]">
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#e6bb65] mb-2 flex items-center gap-1.5">
-              <span className="text-[#f4bb4f] text-sm">卐</span>
+              <span className="text-[#f4bb4f] text-sm">✦</span>
               <span>Sacred Mission</span>
             </h4>
             <p className="font-cormorant text-xl text-white font-medium leading-snug mb-2">

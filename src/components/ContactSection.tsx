@@ -38,9 +38,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) =
           {/* Left Column: Direct info & Team Directory */}
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-[#f0c878] text-xs font-bold uppercase tracking-wider">
-              <span className="text-[#f4bb4f] text-sm">卐</span>
+              <img src="/kumbam_logo.jpg" alt="Logo" className="w-4 h-4 rounded-full object-cover border border-[#f4bb4f]/50" />
               <span>KUMBAKONAM TEMPLES DARSHAN</span>
-              <span className="text-[#f4bb4f] text-sm">卐</span>
+              <span className="text-[#f4bb4f] text-sm">✦</span>
             </div>
 
             <h2 className="font-cormorant text-4xl sm:text-6xl font-bold leading-tight text-white">
