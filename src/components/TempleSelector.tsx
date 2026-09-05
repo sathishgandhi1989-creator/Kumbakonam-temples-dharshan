@@ -11,7 +11,6 @@ import {
   Car, 
   Hotel, 
   Utensils, 
-  HeartHandshake, 
   CheckSquare, 
   Square,
   Sparkles,
@@ -19,8 +18,9 @@ import {
   Compass
 } from 'lucide-react';
 import { Temple, ServiceTierId } from '../types';
-import { PACKAGES_META, ALL_TEMPLES, SERVICE_TIERS } from '../data/temples';
+import { PACKAGES_META, ALL_TEMPLES, SERVICE_TIERS, getLocalizedTemple, getLocalizedPackage, getLocalizedTier } from '../data/temples';
 import { TempleModal } from './TempleModal';
+import { Language, TRANSLATIONS } from '../data/translations';
 
 interface TempleSelectorProps {
   currentPackage: 1 | 2 | 3;
@@ -47,6 +47,7 @@ interface TempleSelectorProps {
   setSeniorAssistance: (val: boolean) => void;
   archanaAssistance: boolean;
   setArchanaAssistance: (val: boolean) => void;
+  currentLang?: Language;
 }
 
 export const TempleSelector: React.FC<TempleSelectorProps> = ({
@@ -74,116 +75,146 @@ export const TempleSelector: React.FC<TempleSelectorProps> = ({
   setSeniorAssistance,
   archanaAssistance,
   setArchanaAssistance,
+  currentLang = 'en'
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [inspectingTemple, setInspectingTemple] = useState<Temple | null>(null);
   const [statusMessage, setStatusMessage] = useState<string>('');
 
-  const currentPkgMeta = PACKAGES_META.find(p => p.id === currentPackage) || PACKAGES_META[0];
+  const t = TRANSLATIONS[currentLang];
+  const currentPkgMeta = useMemo(() => {
+    const raw = PACKAGES_META.find(p => p.id === currentPackage) || PACKAGES_META[0];
+    return getLocalizedPackage(raw, currentLang);
+  }, [currentPackage, currentLang]);
+
+  // Categories list with localization
+  const categoryOptions = useMemo(() => [
+    { key: 'All', label: t.categories.all },
+    { key: 'Navagraha', label: t.categories.navagraha },
+    { key: 'Shiva / Chola', label: t.categories.shiva },
+    { key: 'Vishnu / Divya Desam', label: t.categories.vishnu },
+    { key: 'Devi / Amman', label: t.categories.devi },
+    { key: 'Remedial Shrine', label: t.categories.remedial }
+  ], [t]);
 
   // Filter temples for current package
   const packageTemples = useMemo(() => {
-    return ALL_TEMPLES.filter(t => t.packageId === currentPackage);
+    return ALL_TEMPLES.filter(temple => temple.packageId === currentPackage);
   }, [currentPackage]);
 
   // Apply search and category filter
   const filteredTemples = useMemo(() => {
-    return packageTemples.filter(t => {
-      const matchesSearch = 
-        t.nameTamil.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        t.nameEnglish.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        t.deity.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        t.note.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        t.rulingPlanetOrFeature.toLowerCase().includes(searchQuery.toLowerCase());
+    const q = searchQuery.toLowerCase().trim();
+    return packageTemples.filter(rawTemple => {
+      const loc = getLocalizedTemple(rawTemple, currentLang);
+      const matchesSearch = !q || (
+        (loc.name && loc.name.toLowerCase().includes(q)) ||
+        (rawTemple.nameTamil && rawTemple.nameTamil.toLowerCase().includes(q)) ||
+        (rawTemple.nameEnglish && rawTemple.nameEnglish.toLowerCase().includes(q)) ||
+        (rawTemple.nameHindi && rawTemple.nameHindi.toLowerCase().includes(q)) ||
+        (loc.deity && loc.deity.toLowerCase().includes(q)) ||
+        (loc.pariharam && loc.pariharam.toLowerCase().includes(q)) ||
+        (loc.location && loc.location.toLowerCase().includes(q)) ||
+        (loc.rulingPlanetOrFeature && loc.rulingPlanetOrFeature.toLowerCase().includes(q))
+      );
 
-      const matchesCat = activeCategory === 'All' || t.categoryTag === activeCategory;
-
+      const matchesCat = activeCategory === 'All' || rawTemple.categoryTag === activeCategory;
       return matchesSearch && matchesCat;
     });
-  }, [packageTemples, searchQuery, activeCategory]);
+  }, [packageTemples, searchQuery, activeCategory, currentLang]);
 
   const selectedTemplesList = useMemo(() => {
-    return ALL_TEMPLES.filter(t => selectedTempleIds.includes(t.id));
+    return ALL_TEMPLES.filter(temple => selectedTempleIds.includes(temple.id));
   }, [selectedTempleIds]);
 
   const areAllInCurrentSelected = useMemo(() => {
     if (packageTemples.length === 0) return false;
-    return packageTemples.every(t => selectedTempleIds.includes(t.id));
+    return packageTemples.every(temple => selectedTempleIds.includes(temple.id));
   }, [packageTemples, selectedTempleIds]);
 
   const handleToggleSelectAllCurrent = () => {
     if (areAllInCurrentSelected) {
-      // Unselect current package temples
-      packageTemples.forEach(t => {
-        if (selectedTempleIds.includes(t.id)) {
-          onToggleTemple(t.id);
+      packageTemples.forEach(temple => {
+        if (selectedTempleIds.includes(temple.id)) {
+          onToggleTemple(temple.id);
         }
       });
-      setStatusMessage(`Deselected Package ${currentPackage} temples.`);
+      setStatusMessage(currentLang === 'ta' 
+        ? `தொகுப்பு ${currentPackage} தலங்கள் நீக்கப்பட்டன.` 
+        : currentLang === 'hi'
+        ? `पैकेज ${currentPackage} के मंदिर हटा दिए गए।`
+        : `Deselected Package ${currentPackage} temples.`);
     } else {
       onSelectAllInPackage(currentPackage);
-      setStatusMessage(`Selected all ${packageTemples.length} temples in Package ${currentPackage}.`);
+      setStatusMessage(currentLang === 'ta'
+        ? `தொகுப்பு ${currentPackage}-ல் உள்ள அனைத்து ${packageTemples.length} தலங்களும் சேர்க்கப்பட்டன.`
+        : currentLang === 'hi'
+        ? `पैकेज ${currentPackage} के सभी ${packageTemples.length} मंदिर जोड़ लिए गए।`
+        : `Selected all ${packageTemples.length} temples in Package ${currentPackage}.`);
     }
-  };
-
-  const generateWhatsAppUrl = () => {
-    if (selectedTemplesList.length === 0) {
-      setStatusMessage('Please select at least one temple to prepare your customized itinerary.');
-      return '';
-    }
-
-    const tierObj = SERVICE_TIERS.find(t => t.id === selectedTier);
-    const tierName = tierObj ? tierObj.name : selectedTier;
-    const dateText = travelDate ? travelDate : 'Flexible / To be finalized';
-
-    const servicesList: string[] = [];
-    if (needVehicle) servicesList.push('Private AC Vehicle');
-    if (needStay) servicesList.push('Verified Satvic Accommodation');
-    if (needSatvicFood) servicesList.push('Satvic Meals');
-    if (seniorAssistance) servicesList.push('Senior Citizen Friendly Pacing');
-    if (archanaAssistance) servicesList.push('Archana & Special Darshan Coordination');
-
-    const templeLines = selectedTemplesList.map(t => `• ${t.nameTamil} (${t.nameEnglish}) - [${t.note}]`).join('\n');
-
-    const message = `Vanakkam Kumbakonam Temples Darshan,
-
-I would like to plan a custom spiritual & heritage journey to Kumbakonam.
-
-Package Focus: Package ${currentPackage} · ${currentPkgMeta.title}
-Service Tier: ${tierName}
-Travel Date: ${dateText}
-Group Size: ${groupSize} Person(s)
-Modular Services: ${servicesList.length > 0 ? servicesList.join(', ') : 'Experience & Route Planning only'}
-${specialNotes ? `Special Requirements / Doshas: ${specialNotes}\n` : ''}
-Selected Temples (${selectedTemplesList.length}):
-${templeLines}
-
-Please share my custom route map, timing schedule, and customized quote.`;
-
-    return `https://wa.me/919025304681?text=${encodeURIComponent(message)}`;
   };
 
   const handleSendWhatsApp = () => {
     if (selectedTemplesList.length === 0) {
-      setStatusMessage('Please select at least one temple to prepare your customized itinerary.');
+      setStatusMessage(currentLang === 'ta'
+        ? 'தயவுசெய்து குறைந்தது ஒரு கோவிலையாவது தேர்ந்தெடுக்கவும்.'
+        : currentLang === 'hi'
+        ? 'कृपया अपनी यात्रा हेतु कम से कम एक मंदिर का चयन करें।'
+        : 'Please select at least one temple to prepare your customized itinerary.');
       return;
     }
 
-    const tierObj = SERVICE_TIERS.find(t => t.id === selectedTier);
-    const tierName = tierObj ? tierObj.name : selectedTier;
-    const dateText = travelDate ? travelDate : 'Flexible / To be finalized';
+    const tierObj = SERVICE_TIERS.find(s => s.id === selectedTier);
+    const localizedTier = tierObj ? getLocalizedTier(tierObj, currentLang) : null;
+    const tierName = localizedTier ? localizedTier.name : selectedTier;
+    const dateText = travelDate || (currentLang === 'ta' ? 'முடிவு செய்யப்பட உள்ளது' : currentLang === 'hi' ? 'लचीली / तय की जानी है' : 'Flexible / To be finalized');
 
     const servicesList: string[] = [];
-    if (needVehicle) servicesList.push('Private AC Vehicle');
-    if (needStay) servicesList.push('Verified Satvic Accommodation');
-    if (needSatvicFood) servicesList.push('Satvic Meals');
-    if (seniorAssistance) servicesList.push('Senior Citizen Friendly Pacing');
-    if (archanaAssistance) servicesList.push('Archana & Special Darshan Coordination');
+    if (needVehicle) servicesList.push(t.selector.acVehicleLabel);
+    if (needStay) servicesList.push(t.selector.homestayLabel);
+    if (needSatvicFood) servicesList.push(t.selector.satvicFoodLabel);
+    if (seniorAssistance) servicesList.push(t.selector.seniorCareLabel);
+    if (archanaAssistance) servicesList.push(t.selector.archanaLabel);
 
-    const templeLines = selectedTemplesList.map(t => `• ${t.nameTamil} (${t.nameEnglish}) - [${t.note}]`).join('\n');
+    const templeLines = selectedTemplesList.map(temple => {
+      const loc = getLocalizedTemple(temple, currentLang);
+      return `• ${loc.name} (${temple.nameEnglish}) - [${loc.pariharam || loc.rulingPlanetOrFeature}]`;
+    }).join('\n');
 
-    const message = `Vanakkam Kumbakonam Temples Darshan,
+    let message = '';
+    if (currentLang === 'ta') {
+      message = `வணக்கம் கும்பகோணம் டெம்பிள்ஸ் தர்ஷன்,
+
+எனது கும்பகோணம் ஆன்மீகத் திருத்தல தரிசனப் பயணத்திற்கான தனிப்பயன் திட்டத்தை பெற விரும்புகிறேன்.
+
+தேர்ந்தெடுக்கப்பட்ட தொகுப்பு: தொகுப்பு ${currentPackage} · ${currentPkgMeta.title}
+சேவைத் தரம்: ${tierName}
+பயணத் தேதி: ${dateText}
+பயணிகள் எண்ணிக்கை: ${groupSize} நபர்கள்
+தேவைப்படும் சேவைகள்: ${servicesList.length > 0 ? servicesList.join(', ') : 'பயண வழிகாட்டல் மட்டும்'}
+${specialNotes ? `சிறப்பு பிரார்த்தனை / கோரிக்கைகள்: ${specialNotes}\n` : ''}
+தேர்வு செய்த ஆலயங்கள் (${selectedTemplesList.length}):
+${templeLines}
+
+எனக்கான பயண வழித்தடம், நடை திறக்கும் நேரங்கள் மற்றும் கட்டண விவரங்களை பகிருமாறு அன்புடன் கேட்டுக்கொள்கிறேன்.`;
+    } else if (currentLang === 'hi') {
+      message = `नमस्ते कुंभकोणम टेम्पल्स दर्शन,
+
+मैं कुंभकोणम एवं कावेरी डेल्टा तीर्थ दर्शन यात्रा की योजना बनाना चाहता/चाहती हूँ।
+
+पैकेज: पैकेज ${currentPackage} · ${currentPkgMeta.title}
+सेवा श्रेणी: ${tierName}
+यात्रा तिथि: ${dateText}
+यात्रियों की संख्या: ${groupSize}
+अपेक्षित सुविधाएं: ${servicesList.length > 0 ? servicesList.join(', ') : 'केवल मार्ग योजना एवं मार्गदर्शन'}
+${specialNotes ? `विशेष प्रार्थना / गोत्र / आवश्यकता: ${specialNotes}\n` : ''}
+चयनित पवित्र मंदिर (${selectedTemplesList.length}):
+${templeLines}
+
+कृपया यात्रा मार्ग, शुभ दर्शन समय एवं विस्तृत कोटेशन साझा करें।`;
+    } else {
+      message = `Vanakkam Kumbakonam Temples Darshan,
 
 I would like to plan a custom spiritual & heritage journey to Kumbakonam.
 
@@ -197,22 +228,36 @@ Selected Temples (${selectedTemplesList.length}):
 ${templeLines}
 
 Please share my custom route map, timing schedule, and customized quote.`;
+    }
 
     const url = `https://wa.me/919025304681?text=${encodeURIComponent(message)}`;
-    setStatusMessage('Opening WhatsApp with Kumbakonam Temples Darshan (+91 90253 04681)...');
+    setStatusMessage(t.contactForm.successMessage);
     window.open(url, '_blank');
   };
 
   const handleCopyItinerary = () => {
     if (selectedTemplesList.length === 0) {
-      setStatusMessage('Please select at least one temple before copying.');
+      setStatusMessage(currentLang === 'ta'
+        ? 'நகலெடுக்க குறைந்தது ஒரு கோவிலையாவது தேர்வு செய்யவும்.'
+        : currentLang === 'hi'
+        ? 'कॉपी करने से पूर्व कृपया कम से कम एक मंदिर चुनें।'
+        : 'Please select at least one temple before copying.');
       return;
     }
-    const templeLines = selectedTemplesList.map((t, idx) => `${idx + 1}. ${t.nameTamil} - ${t.nameEnglish} (${t.note})`).join('\n');
-    const summary = `Kumbakonam Temples Darshan - Custom Route Summary\n\nPackage: ${currentPkgMeta.title}\nTier: ${selectedTier.toUpperCase()}\nTravel Date: ${travelDate || 'Pending'}\nGroup Size: ${groupSize}\n\nTemples (${selectedTemplesList.length}):\n${templeLines}\n\nContacts & WhatsApp (+91 90253 04681):\n• S. Saranya, B.Tech (Packages & Temple Info)\n• S. Ishwarya, M.A. (Bookings & Payments)\n• Email: info@kumbakonamtemplesdharsan.ae`;
-    
+
+    const tierObj = SERVICE_TIERS.find(s => s.id === selectedTier);
+    const localizedTier = tierObj ? getLocalizedTier(tierObj, currentLang) : null;
+    const tierName = localizedTier ? localizedTier.name : selectedTier;
+
+    const templeLines = selectedTemplesList.map((temple, idx) => {
+      const loc = getLocalizedTemple(temple, currentLang);
+      return `${idx + 1}. ${loc.name} (${temple.nameEnglish}) - [${loc.pariharam || loc.rulingPlanetOrFeature}]`;
+    }).join('\n');
+
+    const summary = `${t.siteTitle} - ${t.selector.summaryTitle}\n\nPackage: ${currentPkgMeta.title}\nTier: ${tierName}\nTravel Date: ${travelDate || 'Pending'}\nGroup Size: ${groupSize}\n\nTemples (${selectedTemplesList.length}):\n${templeLines}\n\nContacts & WhatsApp (+91 90253 04681):\n• S. Saranya, B.Tech (Packages & Temple Info)\n• S. Ishwarya, M.A. (Bookings & Payments)\n• Email: info@kumbakonamtemplesdharsan.ae`;
+
     navigator.clipboard.writeText(summary);
-    setStatusMessage('✓ Itinerary summary copied to clipboard!');
+    setStatusMessage(`✓ ${t.selector.copiedAlert}`);
   };
 
   return (
@@ -221,13 +266,13 @@ Please share my custom route map, timing schedule, and customized quote.`;
         {/* Section Head */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <p className="text-xs font-bold tracking-widest text-[#a03824] uppercase mb-2">
-            Temple Selection
+            {t.selector.step1Tag}
           </p>
           <h2 className="font-cormorant text-4xl sm:text-5xl font-bold text-[#701710] mb-3 leading-tight">
-            Create your custom route
+            {t.selector.step1Heading}
           </h2>
           <p className="text-base sm:text-lg text-[#66584e]">
-            Select temples, customize your service tier and modular preferences, and send directly to our spiritual travel consultant on WhatsApp.
+            {t.selector.step1Sub}
           </p>
           <div className="text-[#c38a29] text-xl mt-2">✦</div>
         </div>
@@ -235,6 +280,7 @@ Please share my custom route map, timing schedule, and customized quote.`;
         {/* Package Tabs */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
           {PACKAGES_META.map((pkg) => {
+            const locPkg = getLocalizedPackage(pkg, currentLang);
             const isActive = currentPackage === pkg.id;
             return (
               <button
@@ -243,7 +289,7 @@ Please share my custom route map, timing schedule, and customized quote.`;
                   onSelectPackage(pkg.id);
                   setActiveCategory('All');
                 }}
-                className={`flex-1 min-w-[260px] max-w-sm p-4 rounded-xl text-left border transition-all ${
+                className={`flex-1 min-w-[260px] max-w-sm p-4 rounded-xl text-left border transition-all cursor-pointer ${
                   isActive
                     ? 'bg-[#701710] text-white border-[#701710] shadow-md'
                     : 'bg-white text-[#6e160f] border-[#dfcdb0] hover:bg-[#fff9ef]'
@@ -256,14 +302,14 @@ Please share my custom route map, timing schedule, and customized quote.`;
                     Package {pkg.id}
                   </span>
                   <span className={`text-xs font-semibold ${isActive ? 'text-[#f4bb4f]' : 'text-[#8a2b1d]'}`}>
-                    {ALL_TEMPLES.filter(t => t.packageId === pkg.id).length} Temples
+                    {ALL_TEMPLES.filter(temple => temple.packageId === pkg.id).length} {currentLang === 'ta' ? 'ஆலயங்கள்' : currentLang === 'hi' ? 'मंदिर' : 'Temples'}
                   </span>
                 </div>
                 <h4 className="font-cormorant text-xl font-bold leading-tight mb-1">
-                  {pkg.title}
+                  {locPkg.title}
                 </h4>
                 <p className={`text-xs font-medium truncate ${isActive ? 'text-[#ffddbe]' : 'text-[#21602f]'}`}>
-                  {pkg.titleTamil}
+                  {currentLang === 'ta' ? pkg.title : (pkg.titleTamil || pkg.title)}
                 </p>
               </button>
             );
@@ -286,17 +332,17 @@ Please share my custom route map, timing schedule, and customized quote.`;
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={handleToggleSelectAllCurrent}
-              className="bg-white border border-[#dfc69e] hover:bg-[#faedd4] text-[#701710] text-xs font-bold px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5"
+              className="bg-white border border-[#dfc69e] hover:bg-[#faedd4] text-[#701710] text-xs font-bold px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer"
             >
               {areAllInCurrentSelected ? (
                 <>
                   <CheckSquare className="w-4 h-4 text-[#1e6631]" />
-                  <span>Deselect All ({packageTemples.length})</span>
+                  <span>{currentLang === 'ta' ? `அனைத்தையும் நீக்கு (${packageTemples.length})` : currentLang === 'hi' ? `सभी हटाएं (${packageTemples.length})` : `Deselect All (${packageTemples.length})`}</span>
                 </>
               ) : (
                 <>
                   <Square className="w-4 h-4 text-[#701710]" />
-                  <span>Select All ({packageTemples.length})</span>
+                  <span>{t.selector.selectAllBtn} ({packageTemples.length})</span>
                 </>
               )}
             </button>
@@ -310,7 +356,7 @@ Please share my custom route map, timing schedule, and customized quote.`;
             <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8b796d]" />
             <input
               type="text"
-              placeholder="Search temple by Tamil / English name, deity, or remedy..."
+              placeholder={t.selector.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[#dacbb5] bg-white text-xs sm:text-sm text-[#3a2e26] focus:outline-none focus:ring-2 focus:ring-[#72130e]/30 placeholder:text-[#99877b]"
@@ -318,26 +364,26 @@ Please share my custom route map, timing schedule, and customized quote.`;
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#8b796d] hover:text-[#72130e]"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#8b796d] hover:text-[#72130e] cursor-pointer"
               >
-                Clear
+                ✕
               </button>
             )}
           </div>
 
           {/* Category Chips */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
-            {['All', 'Navagraha', 'Shiva / Chola', 'Vishnu / Divya Desam', 'Devi / Amman', 'Remedial Shrine'].map(cat => (
+            {categoryOptions.map(cat => (
               <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-3 py-1.5 rounded-full font-medium whitespace-nowrap transition-colors ${
-                  activeCategory === cat
+                key={cat.key}
+                onClick={() => setActiveCategory(cat.key)}
+                className={`px-3 py-1.5 rounded-full font-medium whitespace-nowrap transition-colors cursor-pointer ${
+                  activeCategory === cat.key
                     ? 'bg-[#72130e] text-white'
                     : 'bg-white border border-[#dfcdb0] text-[#55453a] hover:bg-[#faedd4]'
                 }`}
               >
-                {cat}
+                {cat.label}
               </button>
             ))}
           </div>
@@ -347,17 +393,31 @@ Please share my custom route map, timing schedule, and customized quote.`;
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-10">
           {filteredTemples.length === 0 ? (
             <div className="col-span-2 text-center py-12 bg-white rounded-xl border border-[#e5d9c5]">
-              <p className="text-sm text-[#736357]">No temples found matching your search filter.</p>
+              <p className="text-sm text-[#736357]">
+                {currentLang === 'ta' ? 'தேடலுக்கு ஏற்ப கோவில்கள் எதுவும் கிடைக்கவில்லை.' : currentLang === 'hi' ? 'खोज के अनुसार कोई मंदिर नहीं मिला।' : 'No temples found matching your search filter.'}
+              </p>
               <button
                 onClick={() => { setSearchQuery(''); setActiveCategory('All'); }}
-                className="mt-2 text-xs font-bold text-[#72130e] underline"
+                className="mt-2 text-xs font-bold text-[#72130e] underline cursor-pointer"
               >
-                Reset filters
+                {t.selector.resetBtn}
               </button>
             </div>
           ) : (
             filteredTemples.map((temple) => {
               const isSelected = selectedTempleIds.includes(temple.id);
+              const loc = getLocalizedTemple(temple, currentLang);
+              
+              // Secondary title logic for subtitle display
+              let secondaryTitle = '';
+              if (currentLang === 'ta') {
+                secondaryTitle = temple.nameEnglish;
+              } else if (currentLang === 'hi') {
+                secondaryTitle = `${temple.nameTamil || ''} • ${temple.nameEnglish}`;
+              } else {
+                secondaryTitle = temple.nameTamil || '';
+              }
+
               return (
                 <div
                   key={temple.id}
@@ -382,17 +442,19 @@ Please share my custom route map, timing schedule, and customized quote.`;
                           {temple.categoryTag}
                         </span>
                         <span className="text-[10px] text-[#6d5b50]">
-                          • {temple.location}
+                          • {loc.location}
                         </span>
                       </div>
                       <b className="font-cormorant text-lg text-[#65120f] block leading-tight group-hover:text-[#8e2016]">
-                        {temple.nameTamil}
+                        {loc.name}
                       </b>
-                      <span className="text-xs text-[#4b3c33] block mb-1 font-medium">
-                        {temple.nameEnglish}
-                      </span>
+                      {secondaryTitle && (
+                        <span className="text-xs text-[#4b3c33] block mb-1 font-medium">
+                          {secondaryTitle}
+                        </span>
+                      )}
                       <small className="text-[#6c5d53] text-[11px] block leading-relaxed font-normal">
-                        ✦ {temple.note}
+                        ✦ {loc.note || loc.pariharam}
                       </small>
                     </div>
                   </div>
@@ -403,8 +465,8 @@ Please share my custom route map, timing schedule, and customized quote.`;
                       e.stopPropagation();
                       setInspectingTemple(temple);
                     }}
-                    className="p-1.5 rounded-lg text-[#8a5717] hover:bg-[#f6ebd9] transition-colors shrink-0"
-                    title="View Temple Sthala Puranam & Details"
+                    className="p-1.5 rounded-lg text-[#8a5717] hover:bg-[#f6ebd9] transition-colors shrink-0 cursor-pointer"
+                    title={t.selector.viewDetails}
                   >
                     <Info className="w-4 h-4" />
                   </button>
@@ -418,30 +480,40 @@ Please share my custom route map, timing schedule, and customized quote.`;
         <div className="bg-[#fffaf0] border border-[#dfc69e] rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
           <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#eadcc9]">
             <Compass className="w-5 h-5 text-[#b27a20]" />
-            <h3 className="font-cormorant text-2xl font-bold text-[#701710]">
-              Trip Preferences & Modular Services
-            </h3>
+            <div>
+              <span className="text-xs font-bold text-[#a03824] uppercase tracking-wider block">
+                {t.selector.step3Tag}
+              </span>
+              <h3 className="font-cormorant text-2xl font-bold text-[#701710]">
+                {t.selector.step3Heading}
+              </h3>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
             <div>
               <label className="text-xs font-bold text-[#5e5149] uppercase tracking-wider block mb-2">
-                Your Service Tier
+                {t.selector.summaryServiceTier}
               </label>
               <select
                 value={selectedTier}
                 onChange={(e) => onSelectTier(e.target.value as ServiceTierId)}
                 className="w-full p-3 rounded-xl border border-[#dacbb5] bg-white text-sm text-[#3a2e26] font-medium focus:ring-2 focus:ring-[#72130e]/30 focus:outline-none"
               >
-                <option value="economy">Economy (AC Sedan · Budget Homestay)</option>
-                <option value="premium">Premium (AC Innova/Ertiga · Heritage Stay)</option>
-                <option value="elite">Elite / VIP (Luxury Vehicle · VIP Resort & Darshan)</option>
+                {SERVICE_TIERS.map(st => {
+                  const locTier = getLocalizedTier(st, currentLang);
+                  return (
+                    <option key={st.id} value={st.id}>
+                      {locTier.name} ({locTier.vehicle} · {locTier.stay})
+                    </option>
+                  );
+                })}
               </select>
             </div>
 
             <div>
               <label className="text-xs font-bold text-[#5e5149] uppercase tracking-wider block mb-2">
-                Travel Date
+                {t.selector.travelDateLabel}
               </label>
               <div className="relative">
                 <input
@@ -455,7 +527,7 @@ Please share my custom route map, timing schedule, and customized quote.`;
 
             <div>
               <label className="text-xs font-bold text-[#5e5149] uppercase tracking-wider block mb-2">
-                Group Size (Persons)
+                {t.selector.devoteesLabel}
               </label>
               <div className="relative">
                 <input
@@ -473,7 +545,7 @@ Please share my custom route map, timing schedule, and customized quote.`;
           {/* Modular Checkboxes */}
           <div className="mb-6 pt-4 border-t border-[#eadcc9]">
             <span className="text-xs font-bold text-[#5e5149] uppercase tracking-wider block mb-3">
-              Included Modular Services (Toggle as needed)
+              {t.servicesSection.title}
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <label className="flex items-center gap-3 p-3 rounded-xl border border-[#e4d3bd] bg-white cursor-pointer hover:bg-[#fffcf7]">
@@ -484,8 +556,10 @@ Please share my custom route map, timing schedule, and customized quote.`;
                   className="w-4 h-4 accent-[#72130e] rounded"
                 />
                 <div className="text-xs">
-                  <span className="font-bold text-[#45372f] block">Private AC Transport</span>
-                  <span className="text-[11px] text-[#716155]">Vehicle with experienced driver</span>
+                  <span className="font-bold text-[#45372f] block">{t.selector.acVehicleLabel}</span>
+                  <span className="text-[11px] text-[#716155]">
+                    {currentLang === 'ta' ? 'அனுபவம் வாய்ந்த ஓட்டுநர்' : currentLang === 'hi' ? 'अनुभवी चालक के साथ वाहन' : 'Vehicle with experienced driver'}
+                  </span>
                 </div>
               </label>
 
@@ -497,8 +571,10 @@ Please share my custom route map, timing schedule, and customized quote.`;
                   className="w-4 h-4 accent-[#72130e] rounded"
                 />
                 <div className="text-xs">
-                  <span className="font-bold text-[#45372f] block">Verified Accommodation</span>
-                  <span className="text-[11px] text-[#716155]">Clean traditional homestay / hotel</span>
+                  <span className="font-bold text-[#45372f] block">{t.selector.homestayLabel}</span>
+                  <span className="text-[11px] text-[#716155]">
+                    {currentLang === 'ta' ? 'சுத்தமான பாரம்பரிய தங்குமிடம்' : currentLang === 'hi' ? 'स्वच्छ होमस्टे / होटल' : 'Clean traditional homestay / hotel'}
+                  </span>
                 </div>
               </label>
 
@@ -510,8 +586,10 @@ Please share my custom route map, timing schedule, and customized quote.`;
                   className="w-4 h-4 accent-[#72130e] rounded"
                 />
                 <div className="text-xs">
-                  <span className="font-bold text-[#45372f] block">Pure Satvic Meals</span>
-                  <span className="text-[11px] text-[#716155]">Traditional South Indian vegetarian</span>
+                  <span className="font-bold text-[#45372f] block">{t.selector.satvicFoodLabel}</span>
+                  <span className="text-[11px] text-[#716155]">
+                    {currentLang === 'ta' ? 'பாரம்பரிய வாழை இலை சாப்பாடு' : currentLang === 'hi' ? 'दक्षिण भारतीय शुद्ध शाकाहारी' : 'Traditional South Indian vegetarian'}
+                  </span>
                 </div>
               </label>
             </div>
@@ -520,7 +598,7 @@ Please share my custom route map, timing schedule, and customized quote.`;
           {/* Special Care Toggles */}
           <div className="mb-6 pt-4 border-t border-[#eadcc9]">
             <span className="text-xs font-bold text-[#5e5149] uppercase tracking-wider block mb-3">
-              Special Pilgrimage Care
+              {t.selector.summaryAssistance}
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <label className="flex items-center gap-3 p-3 rounded-xl border border-[#e4d3bd] bg-white cursor-pointer hover:bg-[#fffcf7]">
@@ -531,8 +609,10 @@ Please share my custom route map, timing schedule, and customized quote.`;
                   className="w-4 h-4 accent-[#72130e] rounded"
                 />
                 <div className="text-xs">
-                  <span className="font-bold text-[#45372f] block">Senior Citizen & Walking Comfort</span>
-                  <span className="text-[11px] text-[#716155]">Gentle pacing, minimal stairs, resting intervals</span>
+                  <span className="font-bold text-[#45372f] block">{t.selector.seniorCareLabel}</span>
+                  <span className="text-[11px] text-[#716155]">
+                    {currentLang === 'ta' ? 'மெதுவான நடை, படிகள் தவிர்ப்பு, ஓய்வு' : currentLang === 'hi' ? 'धीमी गति, सीढ़ियों से बचाव, पर्याप्त विश्राम' : 'Gentle pacing, minimal stairs, resting intervals'}
+                  </span>
                 </div>
               </label>
 
@@ -544,8 +624,10 @@ Please share my custom route map, timing schedule, and customized quote.`;
                   className="w-4 h-4 accent-[#72130e] rounded"
                 />
                 <div className="text-xs">
-                  <span className="font-bold text-[#45372f] block">Archana & Puja Coordination</span>
-                  <span className="text-[11px] text-[#716155]">Priest assistance for specific dosha pariharams</span>
+                  <span className="font-bold text-[#45372f] block">{t.selector.archanaLabel}</span>
+                  <span className="text-[11px] text-[#716155]">
+                    {currentLang === 'ta' ? 'அர்ச்சனை & தோஷ பரிகார பூஜை வழிகாட்டல்' : currentLang === 'hi' ? 'दोष निवारण संकल्प एवं पूजा समन्वय' : 'Priest assistance for specific dosha pariharams'}
+                  </span>
                 </div>
               </label>
             </div>
@@ -554,13 +636,13 @@ Please share my custom route map, timing schedule, and customized quote.`;
           {/* Special Notes / Dosha Requirements */}
           <div>
             <label className="text-xs font-bold text-[#5e5149] uppercase tracking-wider block mb-2">
-              Specific Astrological Dosha, Pariharam, or Kula Deivam details (Optional)
+              {t.selector.specialNotesLabel}
             </label>
             <textarea
               rows={2}
               value={specialNotes}
               onChange={(e) => setSpecialNotes(e.target.value)}
-              placeholder="e.g. Seeking Rahu-Ketu dosha nivruthi, marriage pariharam, visiting ancestral village near Thiruvidaimarudur..."
+              placeholder={t.selector.specialNotesPlaceholder}
               className="w-full p-3 rounded-xl border border-[#dacbb5] bg-white text-xs sm:text-sm text-[#3a2e26] focus:ring-2 focus:ring-[#72130e]/30 focus:outline-none"
             />
           </div>
@@ -571,15 +653,12 @@ Please share my custom route map, timing schedule, and customized quote.`;
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-2xl font-bold font-cormorant text-[#701710]">
-                {selectedTemplesList.length} Temples Selected
-              </span>
-              <span className="text-xs text-[#6e5d52] font-medium">
-                across your pilgrimage itinerary
+                {selectedTemplesList.length} {t.selector.summaryTemplesSelected}
               </span>
             </div>
             <p className="text-xs text-[#52443a]">
-              Estimated duration: {selectedTemplesList.length <= 5 ? '1 Focused Day' : selectedTemplesList.length <= 10 ? '2 Days' : '3 to 4 Days Comprehensive'}
-              {' '}| Tier: <strong className="capitalize text-[#72130e]">{selectedTier}</strong>
+              {t.selector.summaryServiceTier}: <strong className="capitalize text-[#72130e]">{selectedTier}</strong>
+              {' '}| {t.selector.helpNotice}
             </p>
           </div>
 
@@ -590,7 +669,7 @@ Please share my custom route map, timing schedule, and customized quote.`;
               title="Send selected temples to coordinators on WhatsApp"
             >
               <MessageCircle className="w-4 h-4" />
-              <span>Send Itinerary via WhatsApp</span>
+              <span>{t.selector.sendRouteWhatsApp}</span>
             </button>
 
             <button
@@ -599,7 +678,7 @@ Please share my custom route map, timing schedule, and customized quote.`;
               title="Copy itinerary summary"
             >
               <Copy className="w-3.5 h-3.5" />
-              <span>Copy</span>
+              <span>{t.selector.copyRoute}</span>
             </button>
 
             <button
@@ -607,7 +686,7 @@ Please share my custom route map, timing schedule, and customized quote.`;
               className="bg-transparent hover:bg-[#f6ebd9] text-[#7a583f] text-xs font-bold px-3.5 py-3 rounded-full border border-[#d9c5ad] transition-colors flex items-center justify-center gap-1 cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
-              <span>Clear</span>
+              <span>{t.selector.resetBtn}</span>
             </button>
           </div>
         </div>
@@ -625,6 +704,7 @@ Please share my custom route map, timing schedule, and customized quote.`;
         onClose={() => setInspectingTemple(null)}
         isSelected={inspectingTemple ? selectedTempleIds.includes(inspectingTemple.id) : false}
         onToggleSelect={onToggleTemple}
+        currentLang={currentLang}
       />
     </section>
   );

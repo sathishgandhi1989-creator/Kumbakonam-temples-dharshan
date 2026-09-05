@@ -1,29 +1,52 @@
-import { Temple, PackageMeta, ServiceTier } from '../types';
+import { Temple, PackageMeta, ServiceTier, CategoryTag } from '../types';
+import { TEMPLE_LOCALIZATIONS } from './templeTranslations';
+import { Language } from './translations';
 
 export const PACKAGES_META: PackageMeta[] = [
   {
     id: 1,
     title: "Astrology & Planetary Remedies",
     titleTamil: "ஜோதிட பரிகார மற்றும் நவகிரக திருத்தலங்கள்",
+    titleHindi: "ज्योतिष एवं ग्रह दोष निवारण तीर्थ",
     badge: "Package 1 · Most Popular",
+    badgeTamil: "தொகுப்பு 1 · மிகவும் பிரசித்தி பெற்றது",
+    badgeHindi: "पैकेज 1 · सर्वाधिक लोकप्रिय",
     description: "Customized journeys based on specific astrological planetary influences, Navagraha dosha nivruthi, and ancient remedial shrines along the Cauvery belt.",
-    highlightText: "17 Curated Sacred Shrines covering Surya, Chandra, Sevvai, Budha, Sukra, Sani, Ketu & Pitru Remedial Sthalams"
+    descriptionTamil: "ஜாதக கிரக தோஷங்கள், நவகிரக பரிகாரங்கள், ஆயுள் விருத்தி மற்றும் முன்னோர்களின் பித்ரு தோஷ நிவர்த்திக்கான தனிப்பயன் திருத்தலப் பயணம்.",
+    descriptionHindi: "जन्मपत्रिका के ग्रह दोष, नवग्रह शांति, आयु वृद्धि एवं पितृ दोष निवारण हेतु कावेरी क्षेत्र के दिव्य मंदिरों की विशेष यात्रा।",
+    highlightText: "17 Curated Sacred Shrines covering Surya, Chandra, Sevvai, Budha, Sukra, Sani, Ketu & Pitru Remedial Sthalams",
+    highlightTextTamil: "சூரியன், சந்திரன், செவ்வாய், புதன், சுக்கிரன், சனி, கேது மற்றும் பித்ரு பரிகார தலங்கள் அடங்கிய 17 புனிதக் கோவில்கள்",
+    highlightTextHindi: "सूर्य, चंद्र, मंगल, बुध, शुक्र, शनि, केतु एवं पितृ तर्पण से जुड़े 17 चयनित पावन मंदिर"
   },
   {
     id: 2,
     title: "Suburb & West Highway Heritage",
     titleTamil: "கும்பகோணம் புறநகர் மற்றும் மேற்கு நெடுஞ்சாலைத் தலங்கள்",
+    titleHindi: "कुंभकोणम उपनगर एवं पश्चिम राजमार्ग धरोहर",
     badge: "Package 2 · Ancient Architecture",
+    badgeTamil: "தொகுப்பு 2 · தொன்மையான சோழர் கலை",
+    badgeHindi: "पैकेज 2 · प्राचीन चोल स्थापत्य",
     description: "Serene, historic temples slightly outside town borders spanning Chola masterworks, Divya Desam, Rahu-Guru, and peaceful rural river paths.",
-    highlightText: "12 Celebrated Shrines including Thirunageswaram, Pattiswaram, Alangudi & Thittai"
+    descriptionTamil: "கும்பகோணம் நகரை ஒட்டியுள்ள சோழர் காலத்து பிரம்மாண்ட சிற்பக்கலை, ராகு-குரு தலங்கள், 108 திவ்ய தேசம் மற்றும் காவிரி ஆற்றுப்படுக்கை தலங்கள்.",
+    descriptionHindi: "नगर के निकट स्थित चोल साम्राज्य के अद्वितीय पाषाण मंदिर, राहु-गुरु ग्रह पीठ, 108 दिव्य देशम एवं शांत ग्रामीण तीर्थ।",
+    highlightText: "12 Celebrated Shrines including Thirunageswaram, Pattiswaram, Alangudi & Thittai",
+    highlightTextTamil: "திருநாகேஸ்வரம் ராகு, பட்டீஸ்வரம் துர்க்கை, ஆலங்குடி குரு மற்றும் திட்டை உள்ளிட்ட 12 பெருந்தலங்கள்",
+    highlightTextHindi: "तिरुनागेश्वरम (राहु), पट्टीश्वरम (दुर्गा), आलंगुडी (गुरु) एवं तिट्टई सहित 12 प्रसिद्ध मंदिर"
   },
   {
     id: 3,
     title: "Kumbakonam Town & Mahamaham Core",
     titleTamil: "கும்பகோணம் மாநகர மற்றும் சக்திவாய்ந்த தலங்கள்",
+    titleHindi: "कुंभकोणम नगर एवं महामहाम मुख्य पीठ",
     badge: "Package 3 · Town Circuit",
+    badgeTamil: "தொகுப்பு 3 · மாநகர தரிசனம்",
+    badgeHindi: "पैकेज 3 · नगर परिक्रमा",
     description: "Deep spiritual energy within Kumbakonam city limits and immediate town shrines, from the epic Adi Kumbeswarar to Ugra Bhairavar and Pratyangira Devi.",
-    highlightText: "5 Powerful Shrines for Protection, Peace, and Mahamaham Heritage"
+    descriptionTamil: "கும்பகோணம் நகருக்குள்ளேயே அமைந்துள்ள ஆதி கும்பேஸ்வரர், தென் காளஹஸ்தி, சோழர் உக்ர பைரவர் மற்றும் ஐயாவாடி பிரத்தியங்கிரா தேவி தலங்கள்.",
+    descriptionHindi: "कुंभकोणम नगर के भीतर स्थित आदि कुंभेश्वरर, दक्षिण कालहस्ती, चोल कालभैरव एवं अय्यावाडी प्रत्यंगिरा देवी मंदिर।",
+    highlightText: "5 Powerful Shrines for Protection, Peace, and Mahamaham Heritage",
+    highlightTextTamil: "குடும்ப பாதுகாப்பு, தீவினைகள் அகலுதல் மற்றும் மகாமக பெருமை வாய்ந்த 5 சக்தி தலங்கள்",
+    highlightTextHindi: "सुरक्षा, मानसिक शांति एवं महामहाम विरासत से परिपूर्ण 5 अत्यंत शक्तिशाली मंदिर"
   }
 ];
 
@@ -31,36 +54,79 @@ export const SERVICE_TIERS: ServiceTier[] = [
   {
     id: 'economy',
     name: 'Economy',
+    nameTamil: 'எகானமி (சிக்கனம்)',
+    nameHindi: 'इकोनॉमी (बजट)',
+    badge: 'Standard Care',
+    badgeTamil: 'அடிப்படை வசதி',
+    badgeHindi: 'मानक सुविधा',
     vehicle: 'AC Sedan (Dzire / Etios class)',
+    vehicleTamil: 'ஏசி செடான் (டிசையர் / எட்டியோஸ் ரகம்)',
+    vehicleHindi: 'एसी सेडान (डिजायर / इटियोस वर्ग)',
     stay: 'Clean, verified budget traditional homestay',
+    stayTamil: 'சுத்தமான, பாரம்பரிய பட்ஜெட் தங்குமிடம்',
+    stayHindi: 'स्वच्छ एवं प्रामाणिक पारंपरिक बजट होमस्टे',
     food: 'Basic pure Satvic vegetarian South Indian meals',
+    foodTamil: 'எளிய தூய சாத்வீக தென்னிந்திய சைவ உணவு',
+    foodHindi: 'शुद्ध पारंपरिक दक्षिण भारतीय सात्विक शाकाहारी भोजन',
     specialPerk: 'Verified driver with Kumbakonam route familiarity',
-    priceNote: 'Custom Quote tailored to group size & season'
+    specialPerkTamil: 'கும்பகோணக் கோவில் வழிகளை நன்கறிந்த அனுபவ ஓட்டுநர்',
+    specialPerkHindi: 'कुंभकोणम के मार्गों से भली-भांति परिचित अनुभवी चालक',
+    priceNote: 'Custom Quote tailored to group size & season',
+    priceNoteTamil: 'குடும்பத்தினர் எண்ணிக்கை & காலத்திற்கு ஏற்ப சிறந்த விலை',
+    priceNoteHindi: 'यात्रियों की संख्या एवं मौसम के अनुसार उचित कोटेशन'
   },
   {
     id: 'premium',
     name: 'Premium',
+    nameTamil: 'பிரீமியம் (பரிந்துரைக்கப்படுவது)',
+    nameHindi: 'प्रीमियम (सर्वाधिक अनुशंसित)',
     badge: 'Highly Recommended',
+    badgeTamil: 'மிகவும் பரிந்துரைக்கப்படுகிறது',
+    badgeHindi: 'अत्यधिक अनुशंसित',
     recommended: true,
     vehicle: 'Spacious AC Innova or Ertiga with experienced pilot',
+    vehicleTamil: 'விசாலமான ஏசி இன்னோவா அல்லது எர்டிகா வாகனம்',
+    vehicleHindi: 'विशाल एवं आरामदायक एसी इनोवा अथवा अर्टिगा वाहन',
     stay: 'Handpicked premium traditional heritage homestay / hotel',
+    stayTamil: 'தேர்ந்தெடுக்கப்பட்ட பிரீமியம் பாரம்பரிய ஹோட்டல் / ரிசார்ட்',
+    stayHindi: 'उत्कृष्ट पारंपरिक हेरिटेज होटल / रिजॉर्ट में ठहराव',
     food: 'Authentic high-quality Satvic banana leaf feasts & temple snacks',
+    foodTamil: 'சுவையான தூய சாத்வீக தலைவாழை இலை விருந்து & சிற்றுண்டிகள்',
+    foodHindi: 'केले के पत्ते पर शुद्ध पारंपरिक सात्विक भोजन एवं प्रसाद',
     specialPerk: 'Dedicated route coordinator, temple timing optimization & senior-friendly pacing',
-    priceNote: 'Custom Quote tailored to group size & season'
+    specialPerkTamil: 'தனி வழிகாட்டி, கோவில் நடை நேர ஒருங்கிணைப்பு & முதியோர் சிறப்பு கவனிப்பு',
+    specialPerkHindi: 'समर्पित मार्ग समन्वयक, मंदिर समय प्रबंधन एवं वरिष्ठ नागरिक सुविधा',
+    priceNote: 'Custom Quote tailored to group size & season',
+    priceNoteTamil: 'குடும்பத்தினர் எண்ணிக்கை & காலத்திற்கு ஏற்ப சிறந்த விலை',
+    priceNoteHindi: 'यात्रियों की संख्या एवं मौसम के अनुसार उचित कोटेशन'
   },
   {
     id: 'elite',
     name: 'Elite / VIP',
+    nameTamil: 'எலைட் / வி.ஐ.பி (உயர்தர சொகுசு)',
+    nameHindi: 'एलीट / वीआईपी (अति विशिष्ट)',
     badge: 'Exclusive Care',
+    badgeTamil: 'தனித்துவ வி.ஐ.பி கவனிப்பு',
+    badgeHindi: 'विशिष्ट वीआईपी सेवा',
     vehicle: 'Luxury AC Innova Crysta / Luxury Coach with executive amenities',
+    vehicleTamil: 'சொகுசு ஏசி இன்னோவா கிரிஸ்டா / ஆடம்பர வேன்',
+    vehicleHindi: 'लक्जरी एसी इनोवा क्रिस्टा / विशिष्ट लक्जरी वाहन',
     stay: 'Top-tier VIP heritage resort or private estate with personalized butler care',
+    stayTamil: 'உயர்தர வி.ஐ.பி ஹெரிட்டேஜ் ரிசார்ட் / தனி எஸ்டேட் பங்களா',
+    stayHindi: 'शीर्ष श्रेणी हेरिटेज रिसॉर्ट / प्राइवेट विला में शाही ठहराव',
     food: 'Bespoke Satvic culinary plan (custom dietary requirements, pure sattvic recipes)',
+    foodTamil: 'உங்கள் விருப்பத்திற்கேற்ப பிரத்யேக சாத்வீக உணவுத் திட்டம்',
+    foodHindi: 'आपकी पसंद के अनुसार विशेष शुद्ध सात्विक पाकशाला प्रबंध',
     specialPerk: 'Special archana assistance, VIP darshan coordination, doorstep puja offerings',
-    priceNote: 'Custom Quote tailored to group size & season'
+    specialPerkTamil: 'விரைவு தரிசன ஏற்பாடுகள், சிறப்பு அர்ச்சனை ஒருங்கிணைப்பு & பிரசாத பிராப்தி',
+    specialPerkHindi: 'विशेष दर्शन समन्वय, मुख्य अर्चना प्रबंध एवं प्रसाद सुविधा',
+    priceNote: 'Custom Quote tailored to group size & season',
+    priceNoteTamil: 'குடும்பத்தினர் எண்ணிக்கை & காலத்திற்கு ஏற்ப சிறந்த விலை',
+    priceNoteHindi: 'यात्रियों की संख्या एवं मौसम के अनुसार उचित कोटेशन'
   }
 ];
 
-export const ALL_TEMPLES: Temple[] = [
+const RAW_TEMPLES: Temple[] = [
   // Package 1: Astrology (17 temples)
   {
     id: 'p1-1',
@@ -509,3 +575,112 @@ export const ALL_TEMPLES: Temple[] = [
     highlights: ['The premier temple from which the town gets its name: the divine Pot (Kumbha) pierced by Lord Shiva’s arrow', 'Vast 4-acre complex with 9-tier Raja Gopuram', 'Sacred Mahamaham tank holy bath connection']
   }
 ];
+
+export const ALL_TEMPLES: Temple[] = RAW_TEMPLES.map(temple => {
+  const loc = TEMPLE_LOCALIZATIONS[temple.id];
+  if (!loc) return temple;
+  return {
+    ...temple,
+    nameTamil: loc.nameTamil || temple.nameTamil,
+    nameHindi: loc.nameHindi,
+    deityTamil: loc.deityTamil,
+    deityHindi: loc.deityHindi,
+    rulingPlanetTamil: loc.rulingPlanetTamil,
+    rulingPlanetHindi: loc.rulingPlanetHindi,
+    pariharamTamil: loc.pariharamTamil,
+    pariharamHindi: loc.pariharamHindi,
+    locationTamil: loc.locationTamil,
+    locationHindi: loc.locationHindi,
+    noteTamil: loc.noteTamil,
+    noteHindi: loc.noteHindi,
+    highlightsTamil: loc.highlightsTamil,
+    highlightsHindi: loc.highlightsHindi,
+  };
+});
+
+export function getLocalizedTemple(temple: Temple, lang: Language | string = 'en') {
+  if (lang === 'ta') {
+    return {
+      ...temple,
+      name: temple.nameTamil || temple.nameEnglish,
+      deity: temple.deityTamil || temple.deity,
+      rulingPlanetOrFeature: temple.rulingPlanetTamil || temple.rulingPlanetOrFeature,
+      pariharam: temple.pariharamTamil || temple.pariharam,
+      highlights: temple.highlightsTamil && temple.highlightsTamil.length > 0 ? temple.highlightsTamil : temple.highlights,
+      location: temple.locationTamil || temple.location,
+      note: temple.noteTamil || temple.note,
+    };
+  }
+  if (lang === 'hi') {
+    return {
+      ...temple,
+      name: temple.nameHindi || temple.nameEnglish,
+      deity: temple.deityHindi || temple.deity,
+      rulingPlanetOrFeature: temple.rulingPlanetHindi || temple.rulingPlanetOrFeature,
+      pariharam: temple.pariharamHindi || temple.pariharam,
+      highlights: temple.highlightsHindi && temple.highlightsHindi.length > 0 ? temple.highlightsHindi : temple.highlights,
+      location: temple.locationHindi || temple.location,
+      note: temple.noteHindi || temple.note,
+    };
+  }
+  return {
+    ...temple,
+    name: temple.nameEnglish,
+    deity: temple.deity,
+    rulingPlanetOrFeature: temple.rulingPlanetOrFeature,
+    pariharam: temple.pariharam,
+    highlights: temple.highlights,
+    location: temple.location,
+    note: temple.note,
+  };
+}
+
+export function getLocalizedPackage(pkg: PackageMeta, lang: Language | string = 'en') {
+  if (lang === 'ta') {
+    return {
+      ...pkg,
+      title: pkg.titleTamil || pkg.title,
+      badge: pkg.badgeTamil || pkg.badge,
+      description: pkg.descriptionTamil || pkg.description,
+      highlightText: pkg.highlightTextTamil || pkg.highlightText,
+    };
+  }
+  if (lang === 'hi') {
+    return {
+      ...pkg,
+      title: pkg.titleHindi || pkg.title,
+      badge: pkg.badgeHindi || pkg.badge,
+      description: pkg.descriptionHindi || pkg.description,
+      highlightText: pkg.highlightTextHindi || pkg.highlightText,
+    };
+  }
+  return pkg;
+}
+
+export function getLocalizedTier(tier: ServiceTier, lang: Language | string = 'en') {
+  if (lang === 'ta') {
+    return {
+      ...tier,
+      name: tier.nameTamil || tier.name,
+      badge: tier.badgeTamil || tier.badge,
+      vehicle: tier.vehicleTamil || tier.vehicle,
+      stay: tier.stayTamil || tier.stay,
+      food: tier.foodTamil || tier.food,
+      specialPerk: tier.specialPerkTamil || tier.specialPerk,
+      priceNote: tier.priceNoteTamil || tier.priceNote,
+    };
+  }
+  if (lang === 'hi') {
+    return {
+      ...tier,
+      name: tier.nameHindi || tier.name,
+      badge: tier.badgeHindi || tier.badge,
+      vehicle: tier.vehicleHindi || tier.vehicle,
+      stay: tier.stayHindi || tier.stay,
+      food: tier.foodHindi || tier.food,
+      specialPerk: tier.specialPerkHindi || tier.specialPerk,
+      priceNote: tier.priceNoteHindi || tier.priceNote,
+    };
+  }
+  return tier;
+}

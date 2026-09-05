@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, MapPin, Compass } from 'lucide-react';
+import { MapPin, Compass } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../data/translations';
 
 interface FooterProps {
@@ -18,8 +18,8 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
             <div className="flex items-center gap-3">
               <div className="w-13 h-13 rounded-xl overflow-hidden border border-[#d8be9a] bg-white p-0.5 shrink-0 shadow-md flex items-center justify-center">
                 <img
-                  src="/kumbam_logo.jpg"
-                  alt="Kumbakonam Temples Darshan Official Logo"
+                  src="/kumbam_navagraha_logo.jpg"
+                  alt="Kumbakonam Temples Darshan Sacred Kumbam with 9 Planets Outer Circle Logo"
                   className="w-full h-full object-contain rounded-lg"
                 />
               </div>
@@ -36,7 +36,11 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
               </div>
             </div>
             <p className="text-xs text-[#c5b4a5] leading-relaxed pt-2">
-              Personalized spiritual and heritage journeys through Kumbakonam, Thanjavur, and the sacred Cauvery region.
+              {currentLang === 'ta'
+                ? 'கும்பகோணம், தஞ்சாவூர் மற்றும் காவேரி டெல்டா திருத்தலங்களுக்கான அமைதியான மற்றும் தனிப்பயனாக்கப்பட்ட ஆன்மீக யாத்திரை சேவை.'
+                : currentLang === 'hi'
+                ? 'कुंभकोणम, तंजावुर एवं पवित्र कावेरी क्षेत्र के प्राचीन मंदिरों हेतु व्यक्तिगत एवं शांत तीर्थ दर्शन सेवाएं।'
+                : 'Personalized spiritual and heritage journeys through Kumbakonam, Thanjavur, and the sacred Cauvery region.'}
             </p>
             <div className="pt-2">
               <span className="inline-block text-[11px] font-bold text-[#f4bb4f] bg-[#470f0b] px-3 py-1 rounded-full border border-[#6b1e17]">
@@ -48,17 +52,17 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
           {/* Quick Links */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#e6bb65] mb-4">
-              Quick Navigation
+              {currentLang === 'ta' ? 'விரைவு வழிசெலுத்தல்' : currentLang === 'hi' ? 'त्वरित नेविगेशन' : 'Quick Navigation'}
             </h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#about" className="hover:text-white transition-colors">About Kumbakonam Darshan</a></li>
-              <li><a href="#experiences" className="hover:text-white transition-colors">Signature Experiences</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Modular Services</a></li>
-              <li><a href="#journeys" className="hover:text-white transition-colors">One-Day &amp; Multi-Day Routes</a></li>
-              <li><a href="#pricing" className="hover:text-white transition-colors">Transparent Pricing Tiers</a></li>
-              <li><a href="#selection" className="hover:text-white transition-colors">Interactive Temple Selector</a></li>
-              <li><a href="#why" className="hover:text-white transition-colors">Why Choose Us</a></li>
-              <li><a href="#guide" className="hover:text-white transition-colors">Heritage Guide</a></li>
+              <li><a href="#about" className="hover:text-white transition-colors">{t.nav.about}</a></li>
+              <li><a href="#experiences" className="hover:text-white transition-colors">{t.nav.experiences}</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">{t.nav.services}</a></li>
+              <li><a href="#journeys" className="hover:text-white transition-colors">{t.nav.journeys}</a></li>
+              <li><a href="#pricing" className="hover:text-white transition-colors">{t.nav.pricing}</a></li>
+              <li><a href="#selection" className="hover:text-white transition-colors">{t.nav.selectTemples}</a></li>
+              <li><a href="#why" className="hover:text-white transition-colors">{t.nav.whyUs}</a></li>
+              <li><a href="#guide" className="hover:text-white transition-colors">{t.nav.guide}</a></li>
               <li><a href="#contact" className="text-[#f4bb4f] font-semibold hover:underline">📍 {t.nav.contact}</a></li>
             </ul>
           </div>
@@ -66,28 +70,28 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
           {/* Sacred Temple Circuits */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#e6bb65] mb-4">
-              Sacred Delta Circuits
+              {currentLang === 'ta' ? 'புனித யாத்திரை சுற்றுகள்' : currentLang === 'hi' ? 'पवित्र तीर्थ परिक्रमा' : 'Sacred Delta Circuits'}
             </h4>
             <ul className="space-y-2 text-xs text-[#d6c4b6]">
               <li className="flex items-center gap-1.5">
                 <span className="text-[#f4bb4f]">✦</span>
-                <span>Navagraha 9 Sthalams Circuit</span>
+                <span>{currentLang === 'ta' ? 'நவக்கிரக 9 தலங்கள் சுற்று' : currentLang === 'hi' ? 'नवग्रह 9 तीर्थ परिक्रमा' : 'Navagraha 9 Sthalams Circuit'}</span>
               </li>
               <li className="flex items-center gap-1.5">
                 <span className="text-[#f4bb4f]">✦</span>
-                <span>Lord Shiva Paadal Petra Sthalams</span>
+                <span>{currentLang === 'ta' ? 'தேவார பாடல் பெற்ற சிவாலயங்கள்' : currentLang === 'hi' ? 'भगवान शिव पाडल पेट्र स्थल' : 'Lord Shiva Paadal Petra Sthalams'}</span>
               </li>
               <li className="flex items-center gap-1.5">
                 <span className="text-[#f4bb4f]">✦</span>
-                <span>Kumbakonam Town Pancha Bhootha &amp; Mahamaham</span>
+                <span>{currentLang === 'ta' ? 'பஞ்சபூத & மகாமகத் திருத்தலங்கள்' : currentLang === 'hi' ? 'कुंभकोणम नगर पंचभूत व महामहम' : 'Kumbakonam Town Pancha Bhootha & Mahamaham'}</span>
               </li>
               <li className="flex items-center gap-1.5">
                 <span className="text-[#f4bb4f]">✦</span>
-                <span>Divya Desam &amp; Chola Marvels</span>
+                <span>{currentLang === 'ta' ? 'திவ்ய தேச வைணவத் திருத்தலங்கள்' : currentLang === 'hi' ? 'दिव्य देशम एवं चोल वास्तुशिल्प' : 'Divya Desam & Chola Marvels'}</span>
               </li>
               <li className="flex items-center gap-1.5">
                 <span className="text-[#f4bb4f]">✦</span>
-                <span>Rudra Ganga Sri Aabathsahayeswarar</span>
+                <span>{currentLang === 'ta' ? 'ருத்ர கங்கை திருத்தலங்கள்' : currentLang === 'hi' ? 'रुद्र गंगा एवं परिहार तीर्थ' : 'Rudra Ganga Remedial Shrines'}</span>
               </li>
             </ul>
           </div>
@@ -96,15 +100,21 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
           <div className="bg-[#440c09] p-5 rounded-xl border border-[#5d1611]">
             <h4 className="text-xs font-bold uppercase tracking-widest text-[#e6bb65] mb-2 flex items-center gap-1.5">
               <span className="text-[#f4bb4f] text-sm">✦</span>
-              <span>Sacred Mission</span>
+              <span>{currentLang === 'ta' ? 'எங்கள் நோக்கம்' : currentLang === 'hi' ? 'हमारा संकल्प' : 'Sacred Mission'}</span>
             </h4>
             <p className="font-cormorant text-xl text-white font-medium leading-snug mb-2">
-              Your Time.<br />
-              Your Purpose.<br />
-              Your Journey.
+              {currentLang === 'ta' 
+                ? 'உங்கள் நேரம்.\nஉங்கள் பிரார்த்தனை.\nஉங்கள் புனிதப் பயணம்.' 
+                : currentLang === 'hi' 
+                ? 'आपका समय।\nआपकी श्रद्धा।\nआपकी यात्रा।' 
+                : 'Your Time.\nYour Purpose.\nYour Journey.'}
             </p>
             <p className="text-[11px] text-[#d6c4b6] leading-relaxed mb-4">
-              Serving devotees, families, and pilgrims across India and overseas with peaceful Cauvery hospitality.
+              {currentLang === 'ta'
+                ? 'பக்தர்களுக்கும் குடும்பங்களுக்கும் அமைதியான மற்றும் ஆத்மார்த்தமான காவேரி உபசரிப்புடன் வழிகாட்டுகிறோம்.'
+                : currentLang === 'hi'
+                ? 'देश-विदेश के श्रद्धालुओं और परिवारों को शांतिपूर्ण कावेरी आतिथ्य के साथ समर्पित सेवा।'
+                : 'Serving devotees, families, and pilgrims across India and overseas with peaceful Cauvery hospitality.'}
             </p>
             <div className="pt-3 border-t border-[#5d1611] text-xs">
               <a
@@ -112,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
                 className="inline-flex items-center gap-1.5 text-[#f4bb4f] hover:text-white font-bold transition-colors"
               >
                 <Compass className="w-3.5 h-3.5" />
-                <span>Visit Contact &amp; Booking Section &rarr;</span>
+                <span>{currentLang === 'ta' ? 'தொடர்பு & முன்பதிவு பிரிவு →' : currentLang === 'hi' ? 'संपर्क एवं बुकिंग अनुभाग →' : 'Visit Contact & Booking Section →'}</span>
               </a>
             </div>
           </div>

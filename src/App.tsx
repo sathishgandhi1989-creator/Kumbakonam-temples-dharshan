@@ -16,26 +16,23 @@ import { ALL_TEMPLES } from './data/temples';
 import { Language, TRANSLATIONS } from './data/translations';
 import { Phone, MessageCircle, Compass } from 'lucide-react';
 
-export default function App() {
+export function App() {
   const [currentLang, setCurrentLang] = useState<Language>('en');
   const [currentPackage, setCurrentPackage] = useState<1 | 2 | 3>(1);
-  // Default selected initial temples in package 1
   const [selectedTempleIds, setSelectedTempleIds] = useState<string[]>([
-    'p1-1',
-    'p1-2',
-    'p1-4',
-    'p1-7',
-    'p1-9'
+    't1', 't2', 't3', 't4', 't5'
   ]);
   const [selectedTier, setSelectedTier] = useState<ServiceTierId>('premium');
-  const [travelDate, setTravelDate] = useState<string>('');
-  const [groupSize, setGroupSize] = useState<number>(2);
-  const [needVehicle, setNeedVehicle] = useState<boolean>(true);
-  const [needStay, setNeedStay] = useState<boolean>(true);
-  const [needSatvicFood, setNeedSatvicFood] = useState<boolean>(true);
-  const [seniorAssistance, setSeniorAssistance] = useState<boolean>(false);
-  const [archanaAssistance, setArchanaAssistance] = useState<boolean>(true);
-  const [specialNotes, setSpecialNotes] = useState<string>('');
+  
+  // Customization Form State
+  const [travelDate, setTravelDate] = useState('');
+  const [groupSize, setGroupSize] = useState(2);
+  const [needVehicle, setNeedVehicle] = useState(true);
+  const [needStay, setNeedStay] = useState(true);
+  const [needSatvicFood, setNeedSatvicFood] = useState(true);
+  const [seniorAssistance, setSeniorAssistance] = useState(false);
+  const [archanaAssistance, setArchanaAssistance] = useState(false);
+  const [specialNotes, setSpecialNotes] = useState('');
 
   const scrollToSelection = () => {
     const el = document.getElementById('selection');
@@ -45,16 +42,16 @@ export default function App() {
   };
 
   const handleToggleTemple = (id: string) => {
-    setSelectedTempleIds((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    setSelectedTempleIds(prev => 
+      prev.includes(id) ? prev.filter(tId => tId !== id) : [...prev, id]
     );
   };
 
   const handleSelectAllInPackage = (pkgId: 1 | 2 | 3) => {
-    const pkgTempleIds = ALL_TEMPLES.filter((t) => t.packageId === pkgId).map((t) => t.id);
-    setSelectedTempleIds((prev) => {
-      const combined = new Set([...prev, ...pkgTempleIds]);
-      return Array.from(combined);
+    const pkgTemples = ALL_TEMPLES.filter(t => t.packageId === pkgId).map(t => t.id);
+    setSelectedTempleIds(prev => {
+      const set = new Set([...prev, ...pkgTemples]);
+      return Array.from(set);
     });
   };
 
@@ -66,6 +63,8 @@ export default function App() {
     setCurrentPackage(pkgId);
     scrollToSelection();
   };
+
+  const t = TRANSLATIONS[currentLang];
 
   return (
     <div className="min-h-screen bg-[#fffdf8] text-[#2a211d] font-sans">
@@ -81,18 +80,25 @@ export default function App() {
           currentLang={currentLang}
         />
 
-        <About />
+        <About currentLang={currentLang} />
         
-        <Experiences onSelectExperience={handleSelectExperience} />
+        <Experiences 
+          onSelectExperience={handleSelectExperience} 
+          currentLang={currentLang} 
+        />
         
-        <Services />
+        <Services currentLang={currentLang} />
         
-        <Journeys onBuildRouteClick={scrollToSelection} />
+        <Journeys 
+          onBuildRouteClick={scrollToSelection} 
+          currentLang={currentLang} 
+        />
         
         <PricingTiers
           selectedTier={selectedTier}
           onSelectTier={setSelectedTier}
           onPlanClick={scrollToSelection}
+          currentLang={currentLang}
         />
         
         <TempleSelector
@@ -120,11 +126,12 @@ export default function App() {
           setSeniorAssistance={setSeniorAssistance}
           archanaAssistance={archanaAssistance}
           setArchanaAssistance={setArchanaAssistance}
+          currentLang={currentLang}
         />
         
-        <WhyChooseUs />
+        <WhyChooseUs currentLang={currentLang} />
         
-        <HeritageGuide />
+        <HeritageGuide currentLang={currentLang} />
         
         {/* Designated Contact & Booking Area */}
         <ContactSection currentLang={currentLang} />
@@ -137,24 +144,24 @@ export default function App() {
         <div className="flex items-center justify-between gap-2 max-w-md mx-auto">
           {/* Quick WhatsApp */}
           <a
-            href={TRANSLATIONS[currentLang].whatsappLink}
+            href={t.whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 bg-[#19783b] hover:bg-[#146330] text-white text-[11px] font-bold py-2 px-2 rounded-lg flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all text-center"
             title="Chat on WhatsApp"
           >
             <MessageCircle className="w-3.5 h-3.5 shrink-0" />
-            <span className="truncate">WhatsApp</span>
+            <span className="truncate">{t.hero.whatsapp}</span>
           </a>
 
           {/* Quick Call */}
           <a
-            href={`tel:${TRANSLATIONS[currentLang].phoneRaw}`}
+            href={`tel:${t.phoneRaw}`}
             className="flex-1 bg-[#851e17] hover:bg-[#99251d] text-white text-[11px] font-bold py-2 px-2 rounded-lg flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-all text-center border border-[#aa342a]"
             title="Call Helpline Directly"
           >
             <Phone className="w-3.5 h-3.5 shrink-0 text-[#f4bb4f]" />
-            <span className="truncate">Call Help</span>
+            <span className="truncate">{currentLang === 'ta' ? 'அழைக்க' : currentLang === 'hi' ? 'कॉल करें' : 'Call Help'}</span>
           </a>
 
           {/* Quick Plan Route */}
@@ -164,10 +171,11 @@ export default function App() {
             title="Customize Temple Circuit"
           >
             <Compass className="w-3.5 h-3.5 shrink-0 text-[#2a0604]" />
-            <span className="truncate">Plan Route</span>
+            <span className="truncate">{currentLang === 'ta' ? 'திட்டம்' : currentLang === 'hi' ? 'योजना' : 'Plan Route'}</span>
           </button>
         </div>
       </aside>
     </div>
   );
 }
+export default App;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Compass, Sun, MapPin, ShieldCheck, HeartHandshake, Sparkles } from 'lucide-react';
+import { ArrowRight, Sun, MapPin, ShieldCheck, HeartHandshake, Sparkles } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../data/translations';
 
 interface HeroProps {
@@ -80,17 +80,18 @@ export const Hero: React.FC<HeroProps> = ({ onPlanClick, currentLang }) => {
             </div>
           </div>
 
-          {/* Right Column: Sacred Heritage Art Panel */}
+          {/* Right Column: Sacred Kumbam and Nine Planets Logo Showcase */}
           <div className="hero-art relative bg-gradient-to-b from-[#f7e2bd] to-[#ecd0a0] border border-[#dfc49e] rounded-2xl p-7 text-center shadow-lg overflow-hidden">
             {/* Ambient Background Warm Halo */}
             <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-[#f4bb4f]/30 blur-2xl pointer-events-none" />
 
-            {/* Sacred Kumbam Official Emblem */}
-            <div className="relative mx-auto mb-4 w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden shadow-xl border-2 border-[#d2af7d] bg-[#fdf8f0] p-1 group">
+            {/* Sacred Kumbam and Nine Planets Logo */}
+            <div className="relative mx-auto mb-4 w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden shadow-xl border-2 border-[#d2af7d] bg-[#fdf8f0] p-1.5 group">
               <img
-                src="/kumbam_logo.jpg"
-                alt="Kumbakonam Temples Darshan Sacred Kumbam Logo"
+                src="/kumbam_navagraha_logo.jpg"
+                alt="Kumbakonam Temples Darshan Sacred Kumbam and Nine Planets Logo"
                 className="w-full h-full object-contain rounded-xl hover:scale-105 transition-transform duration-500"
+                referrerPolicy="no-referrer"
               />
             </div>
 
@@ -103,7 +104,7 @@ export const Hero: React.FC<HeroProps> = ({ onPlanClick, currentLang }) => {
               Kumbakonam &amp; Sacred Cauvery Delta
             </div>
 
-            {/* Heritage Features List (Clean, devotional, no contact clutter) */}
+            {/* Heritage Features List (Clean, devotional) */}
             <div className="p-4 rounded-xl bg-white/85 backdrop-blur-sm border border-[#dfc5a2] text-left text-xs text-[#453328] space-y-2">
               <div className="font-bold text-[#72130e] flex items-center gap-1.5 text-[11px] uppercase tracking-wider">
                 <Sparkles className="w-3.5 h-3.5 text-[#b27a20]" />
@@ -139,3 +140,4 @@ export const Hero: React.FC<HeroProps> = ({ onPlanClick, currentLang }) => {
     </section>
   );
 };
+

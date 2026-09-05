@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sparkles, Menu, X, Compass, ChevronDown } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../data/translations';
+import { GoldenVinayagar } from './GoldenVinayagar';
 
 interface HeaderProps {
   onPlanClick: () => void;
@@ -90,7 +91,7 @@ export const Header: React.FC<HeaderProps> = ({ onPlanClick, currentLang, onSele
       <div className="bg-[#5c0d0a] text-[#fff7e8] px-3 sm:px-6 lg:px-8 py-2 text-xs flex flex-wrap justify-between items-center gap-2 border-b border-[#72130e]/50 z-50 relative font-medium">
         {/* Left: Sacred Symbol & Tagline */}
         <div className="flex items-center gap-2">
-          <img src="/kumbam_logo.jpg" alt="Kumbam Emblem" className="w-4 h-4 rounded-full object-cover border border-[#f4bb4f]/50" />
+          <img src="/kumbam_navagraha_logo.jpg" alt="Kumbam Emblem" className="w-4 h-4 rounded-full object-cover border border-[#f4bb4f]/50" />
           <span className="text-[#f4bb4f] font-bold text-sm tracking-wider">ॐ ✦</span>
           <span className="font-medium text-[11px] sm:text-xs tracking-wide">
             {t.tagline}
@@ -117,12 +118,12 @@ export const Header: React.FC<HeaderProps> = ({ onPlanClick, currentLang, onSele
       <header className="sticky top-0 z-40 bg-[#fffdf8]/95 backdrop-blur-md border-b border-[#ebdcc7] shadow-sm transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            {/* Brand Logo & Title */}
+            {/* Brand Logo & Title with 9 Planets Outer Circle Kumbham */}
             <a href="#" className="flex items-center gap-3.5 group">
               <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-xl overflow-hidden shadow-md group-hover:scale-105 transition-transform border border-[#d8be9a] bg-white p-0.5 shrink-0 flex items-center justify-center">
                 <img
-                  src="/kumbam_logo.jpg"
-                  alt="Kumbakonam Temples Darshan Official Logo"
+                  src="/kumbam_navagraha_logo.jpg"
+                  alt="Kumbakonam Temples Darshan Sacred Kumbam with 9 Planets Outer Circle Logo"
                   className="w-full h-full object-contain rounded-lg"
                 />
               </div>
@@ -156,8 +157,11 @@ export const Header: React.FC<HeaderProps> = ({ onPlanClick, currentLang, onSele
               ))}
             </nav>
 
-            {/* CTA & Mobile Toggle */}
-            <div className="flex items-center gap-3">
+            {/* CTA & Mobile Toggle with Golden Vinayagar */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              {/* Golden Vinayagar on the right corner of the header before option button */}
+              <GoldenVinayagar currentLang={currentLang} />
+
               <button
                 onClick={onPlanClick}
                 className="hidden sm:inline-flex items-center gap-1.5 bg-[#72130e] hover:bg-[#5a0f0b] text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all shadow-sm hover:shadow cursor-pointer"

@@ -1,23 +1,40 @@
 import React from 'react';
-import { X, MapPin, Sparkles, Shield, Compass, BookOpen, Check } from 'lucide-react';
+import { X, MapPin, Sparkles, Shield, BookOpen, Check } from 'lucide-react';
 import { Temple } from '../types';
 import { getTempleImage } from '../data/templeImages';
+import { Language, TRANSLATIONS } from '../data/translations';
+import { getLocalizedTemple } from '../data/temples';
 
 interface TempleModalProps {
   temple: Temple | null;
   onClose: () => void;
   isSelected: boolean;
   onToggleSelect: (id: string) => void;
+  currentLang?: Language;
 }
 
 export const TempleModal: React.FC<TempleModalProps> = ({
   temple,
   onClose,
   isSelected,
-  onToggleSelect
+  onToggleSelect,
+  currentLang = 'en'
 }) => {
   if (!temple) return null;
+  const t = TRANSLATIONS[currentLang];
+  const loc = getLocalizedTemple(temple, currentLang);
   const imgUrl = temple.imageUrl || getTempleImage(temple.id);
+
+  // Determine secondary title (e.g. if Tamil selected, show English; if English, show Tamil; if Hindi, show Tamil & English)
+  const primaryTitle = loc.name;
+  let secondaryTitle = '';
+  if (currentLang === 'ta') {
+    secondaryTitle = temple.nameEnglish;
+  } else if (currentLang === 'hi') {
+    secondaryTitle = `${temple.nameTamil || ''} • ${temple.nameEnglish}`;
+  } else {
+    secondaryTitle = temple.nameTamil || '';
+  }
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
@@ -29,7 +46,7 @@ export const TempleModal: React.FC<TempleModalProps> = ({
         <div className="relative h-48 sm:h-56 w-full overflow-hidden bg-[#3a0906]">
           <img
             src={imgUrl}
-            alt={temple.nameEnglish}
+            alt={primaryTitle}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#480c09] via-[#480c09]/60 to-transparent" />
@@ -48,11 +65,13 @@ export const TempleModal: React.FC<TempleModalProps> = ({
               Package {temple.packageId} · {temple.categoryTag}
             </span>
             <h3 className="font-cormorant text-2xl sm:text-3xl font-bold text-white mb-0.5 drop-shadow-sm">
-              {temple.nameEnglish}
+              {primaryTitle}
             </h3>
-            <p className="text-base sm:text-lg text-[#feddb0] font-medium font-cormorant drop-shadow-sm">
-              {temple.nameTamil}
-            </p>
+            {secondaryTitle && (
+              <p className="text-base sm:text-lg text-[#feddb0] font-medium font-cormorant drop-shadow-sm">
+                {secondaryTitle}
+              </p>
+            )}
           </div>
         </div>
 
@@ -62,21 +81,21 @@ export const TempleModal: React.FC<TempleModalProps> = ({
           <div className="flex flex-wrap items-center gap-3 text-xs text-[#5a483d] pb-4 border-b border-[#eadcc9]">
             <div className="flex items-center gap-1.5 font-medium bg-[#fcf5e9] px-3 py-1.5 rounded-lg border border-[#e8d5bc]">
               <MapPin className="w-3.5 h-3.5 text-[#b27a20]" />
-              <span>{temple.location}</span>
+              <span>{loc.location}</span>
             </div>
             <div className="flex items-center gap-1.5 font-medium bg-[#fcf5e9] px-3 py-1.5 rounded-lg border border-[#e8d5bc]">
               <Sparkles className="w-3.5 h-3.5 text-[#72130e]" />
-              <span>{temple.rulingPlanetOrFeature}</span>
+              <span>{loc.rulingPlanetOrFeature}</span>
             </div>
           </div>
 
           {/* Deity Information */}
           <div className="bg-[#fff9ef] p-4 rounded-xl border border-[#ebdcc7]">
             <span className="text-[11px] font-bold uppercase tracking-wider text-[#a03824] block mb-1">
-              Presiding Deity & Sanctum
+              {t.modal.presidingDeity}
             </span>
             <p className="font-cormorant text-xl font-bold text-[#6e160f]">
-              {temple.deity}
+              {loc.deity}
             </p>
           </div>
 
@@ -84,10 +103,10 @@ export const TempleModal: React.FC<TempleModalProps> = ({
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#72130e] mb-2">
               <Shield className="w-4 h-4 text-[#b27a20]" />
-              <span>Pariharam & Spiritual Blessings</span>
+              <span>{t.modal.pariharamTitle}</span>
             </div>
             <p className="text-sm text-[#4a3a30] bg-[#f8f2e7] p-4 rounded-xl border border-[#e4d3bd] leading-relaxed">
-              {temple.pariharam}
+              {loc.pariharam}
             </p>
           </div>
 
@@ -95,10 +114,10 @@ export const TempleModal: React.FC<TempleModalProps> = ({
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#72130e] mb-3">
               <BookOpen className="w-4 h-4 text-[#b27a20]" />
-              <span>Sthala Puranam & Unique Heritage</span>
+              <span>{t.modal.sthalaPuranamTitle}</span>
             </div>
             <ul className="space-y-2.5">
-              {temple.highlights.map((item, idx) => (
+              {loc.highlights.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4a3a30]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#b27a20] shrink-0 mt-2" />
                   <span>{item}</span>
@@ -113,30 +132,30 @@ export const TempleModal: React.FC<TempleModalProps> = ({
           <div className="text-xs text-[#6e584a]">
             {isSelected ? (
               <span className="text-[#1e6631] font-bold flex items-center gap-1">
-                <Check className="w-4 h-4" /> Selected in your custom route
+                <Check className="w-4 h-4" /> {t.modal.selectedInRoute}
               </span>
             ) : (
-              <span>Not yet added to your route</span>
+              <span>{t.modal.notAddedToRoute}</span>
             )}
           </div>
           <div className="flex items-center gap-3">
             <button
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-xs font-bold text-[#5c4a3e] hover:bg-[#ebdcc7] transition-colors"
+              className="px-4 py-2 rounded-xl text-xs font-bold text-[#5c4a3e] hover:bg-[#ebdcc7] transition-colors cursor-pointer"
             >
-              Close
+              {t.modal.closeBtn}
             </button>
             <button
               onClick={() => {
                 onToggleSelect(temple.id);
               }}
-              className={`px-5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+              className={`px-5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
                 isSelected
                   ? 'bg-[#19783b] text-white shadow'
                   : 'bg-[#72130e] text-white hover:bg-[#5c0d0a] shadow'
               }`}
             >
-              {isSelected ? '✓ In My Route (Remove)' : '+ Add to My Route'}
+              {isSelected ? t.modal.inRoute : t.modal.addRoute}
             </button>
           </div>
         </div>
