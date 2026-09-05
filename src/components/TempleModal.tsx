@@ -48,6 +48,10 @@ export const TempleModal: React.FC<TempleModalProps> = ({
             src={imgUrl}
             alt={primaryTitle}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = '/temple_gopuram.jpg';
+            }}
+            referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#480c09] via-[#480c09]/60 to-transparent" />
           
