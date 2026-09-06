@@ -88,35 +88,37 @@ export const Header: React.FC<HeaderProps> = ({ onPlanClick, currentLang, onSele
   return (
     <>
       {/* Top Banner Bar: Elegant sacred identity & language selector */}
-      <div className="bg-[#5c0d0a] text-[#fff7e8] px-3 sm:px-6 lg:px-8 py-2 text-xs flex flex-wrap justify-between items-center gap-2 border-b border-[#72130e]/50 z-50 relative font-medium">
-        {/* Left: Sacred Symbol & Tagline */}
-        <div className="flex items-center gap-2">
-          <img src="/kumbam_navagraha_logo.jpg" alt="Kumbam Emblem" className="w-4 h-4 rounded-full object-cover border border-[#f4bb4f]/50" />
-          <span className="text-[#f4bb4f] font-bold text-sm tracking-wider">ॐ ✦</span>
-          <span className="font-medium text-[11px] sm:text-xs tracking-wide">
-            {t.tagline}
-          </span>
-        </div>
+      <div className="bg-[#5c0d0a] text-[#fff7e8] py-2 text-xs border-b border-[#72130e]/50 z-50 relative font-medium">
+        <div className="main-container flex flex-wrap justify-between items-center gap-2">
+          {/* Left: Sacred Symbol & Tagline */}
+          <div className="flex items-center gap-2">
+            <img src="/kumbam_navagraha_logo.jpg" alt="Kumbam Emblem" className="w-4 h-4 rounded-full object-cover border border-[#f4bb4f]/50" />
+            <span className="text-[#f4bb4f] font-bold text-sm tracking-wider">ॐ ✦</span>
+            <span className="font-medium text-[11px] sm:text-xs tracking-wide">
+              {t.tagline}
+            </span>
+          </div>
 
-        {/* Right: Language Selector + Quick Link to Designated Contact Area */}
-        <div className="flex items-center gap-2 sm:gap-3 text-xs">
-          <LanguageSelector
-            currentLang={currentLang}
-            onSelectLang={onSelectLang}
-          />
+          {/* Right: Language Selector + Quick Link to Designated Contact Area */}
+          <div className="flex items-center gap-2 sm:gap-3 text-xs">
+            <LanguageSelector
+              currentLang={currentLang}
+              onSelectLang={onSelectLang}
+            />
 
-          <a
-            href="#contact"
-            className="bg-[#781712] hover:bg-[#8f1f18] text-[#ffe9c9] px-2.5 py-1 rounded text-[11px] font-semibold transition-colors border border-[#a3322a]"
-          >
-            <span>📍 {t.nav.contact}</span>
-          </a>
+            <a
+              href="#contact"
+              className="bg-[#781712] hover:bg-[#8f1f18] text-[#ffe9c9] px-2.5 py-1 rounded text-[11px] font-semibold transition-colors border border-[#a3322a]"
+            >
+              <span>📍 {t.nav.contact}</span>
+            </a>
+          </div>
         </div>
       </div>
 
       {/* Main Navigation Header */}
       <header className="sticky top-0 z-40 bg-[#fffdf8]/95 backdrop-blur-md border-b border-[#ebdcc7] shadow-sm transition-all">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="main-container">
           <div className="flex justify-between items-center h-20">
             {/* Brand Logo & Title with 9 Planets Outer Circle Kumbham */}
             <a href="#" className="flex items-center gap-3.5 group">

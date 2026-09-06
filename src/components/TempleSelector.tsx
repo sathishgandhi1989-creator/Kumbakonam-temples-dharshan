@@ -20,6 +20,7 @@ import {
 import { Temple, ServiceTierId } from '../types';
 import { PACKAGES_META, ALL_TEMPLES, SERVICE_TIERS, getLocalizedTemple, getLocalizedPackage, getLocalizedTier } from '../data/temples';
 import { TempleModal } from './TempleModal';
+import { WhatsAppMessageModal } from './WhatsAppMessageModal';
 import { Language, TRANSLATIONS } from '../data/translations';
 
 interface TempleSelectorProps {
@@ -81,6 +82,7 @@ export const TempleSelector: React.FC<TempleSelectorProps> = ({
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [inspectingTemple, setInspectingTemple] = useState<Temple | null>(null);
   const [statusMessage, setStatusMessage] = useState<string>('');
+  const [isWhatsAppModalOpen, setIsWhatsAppModalOpen] = useState(false);
 
   const t = TRANSLATIONS[currentLang];
   const currentPkgMeta = useMemo(() => {
@@ -165,74 +167,7 @@ export const TempleSelector: React.FC<TempleSelectorProps> = ({
       return;
     }
 
-    const tierObj = SERVICE_TIERS.find(s => s.id === selectedTier);
-    const localizedTier = tierObj ? getLocalizedTier(tierObj, currentLang) : null;
-    const tierName = localizedTier ? localizedTier.name : selectedTier;
-    const dateText = travelDate || (currentLang === 'ta' ? 'முடிவு செய்யப்பட உள்ளது' : currentLang === 'hi' ? 'लचीली / तय की जानी है' : 'Flexible / To be finalized');
-
-    const servicesList: string[] = [];
-    if (needVehicle) servicesList.push(t.selector.acVehicleLabel);
-    if (needStay) servicesList.push(t.selector.homestayLabel);
-    if (needSatvicFood) servicesList.push(t.selector.satvicFoodLabel);
-    if (seniorAssistance) servicesList.push(t.selector.seniorCareLabel);
-    if (archanaAssistance) servicesList.push(t.selector.archanaLabel);
-
-    const templeLines = selectedTemplesList.map(temple => {
-      const loc = getLocalizedTemple(temple, currentLang);
-      return `• ${loc.name} (${temple.nameEnglish}) - [${loc.pariharam || loc.rulingPlanetOrFeature}]`;
-    }).join('\n');
-
-    let message = '';
-    if (currentLang === 'ta') {
-      message = `வணக்கம் கும்பகோணம் டெம்பிள்ஸ் தர்ஷன்,
-
-எனது கும்பகோணம் ஆன்மீகத் திருத்தல தரிசனப் பயணத்திற்கான தனிப்பயன் திட்டத்தை பெற விரும்புகிறேன்.
-
-தேர்ந்தெடுக்கப்பட்ட தொகுப்பு: தொகுப்பு ${currentPackage} · ${currentPkgMeta.title}
-சேவைத் தரம்: ${tierName}
-பயணத் தேதி: ${dateText}
-பயணிகள் எண்ணிக்கை: ${groupSize} நபர்கள்
-தேவைப்படும் சேவைகள்: ${servicesList.length > 0 ? servicesList.join(', ') : 'பயண வழிகாட்டல் மட்டும்'}
-${specialNotes ? `சிறப்பு பிரார்த்தனை / கோரிக்கைகள்: ${specialNotes}\n` : ''}
-தேர்வு செய்த ஆலயங்கள் (${selectedTemplesList.length}):
-${templeLines}
-
-எனக்கான பயண வழித்தடம், நடை திறக்கும் நேரங்கள் மற்றும் கட்டண விவரங்களை பகிருமாறு அன்புடன் கேட்டுக்கொள்கிறேன்.`;
-    } else if (currentLang === 'hi') {
-      message = `नमस्ते कुंभकोणम टेम्पल्स दर्शन,
-
-मैं कुंभकोणम एवं कावेरी डेल्टा तीर्थ दर्शन यात्रा की योजना बनाना चाहता/चाहती हूँ।
-
-पैकेज: पैकेज ${currentPackage} · ${currentPkgMeta.title}
-सेवा श्रेणी: ${tierName}
-यात्रा तिथि: ${dateText}
-यात्रियों की संख्या: ${groupSize}
-अपेक्षित सुविधाएं: ${servicesList.length > 0 ? servicesList.join(', ') : 'केवल मार्ग योजना एवं मार्गदर्शन'}
-${specialNotes ? `विशेष प्रार्थना / गोत्र / आवश्यकता: ${specialNotes}\n` : ''}
-चयनित पवित्र मंदिर (${selectedTemplesList.length}):
-${templeLines}
-
-कृपया यात्रा मार्ग, शुभ दर्शन समय एवं विस्तृत कोटेशन साझा करें।`;
-    } else {
-      message = `Vanakkam Kumbakonam Temples Darshan,
-
-I would like to plan a custom spiritual & heritage journey to Kumbakonam.
-
-Package Focus: Package ${currentPackage} · ${currentPkgMeta.title}
-Service Tier: ${tierName}
-Travel Date: ${dateText}
-Group Size: ${groupSize} Person(s)
-Modular Services: ${servicesList.length > 0 ? servicesList.join(', ') : 'Experience & Route Planning only'}
-${specialNotes ? `Special Requirements / Doshas: ${specialNotes}\n` : ''}
-Selected Temples (${selectedTemplesList.length}):
-${templeLines}
-
-Please share my custom route map, timing schedule, and customized quote.`;
-    }
-
-    const url = `https://wa.me/919025304681?text=${encodeURIComponent(message)}`;
-    setStatusMessage(t.contactForm.successMessage);
-    window.open(url, '_blank');
+    setIsWhatsAppModalOpen(true);
   };
 
   const handleCopyItinerary = () => {
@@ -262,7 +197,7 @@ Please share my custom route map, timing schedule, and customized quote.`;
 
   return (
     <section id="selection" className="py-20 bg-[#fffdf7] border-b border-[#ead9c0]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="main-container">
         {/* Section Head */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <p className="text-xs font-bold tracking-widest text-[#a03824] uppercase mb-2">
@@ -705,6 +640,27 @@ Please share my custom route map, timing schedule, and customized quote.`;
         isSelected={inspectingTemple ? selectedTempleIds.includes(inspectingTemple.id) : false}
         onToggleSelect={onToggleTemple}
         currentLang={currentLang}
+      />
+
+      {/* WhatsApp Message Modal with Language Selection & Live Concern Message Preview */}
+      <WhatsAppMessageModal
+        isOpen={isWhatsAppModalOpen}
+        onClose={() => setIsWhatsAppModalOpen(false)}
+        defaultLang={currentLang}
+        mode="itinerary"
+        itineraryData={{
+          packageId: currentPackage,
+          selectedTempleIds,
+          selectedTier,
+          travelDate,
+          groupSize,
+          needVehicle,
+          needStay,
+          needSatvicFood,
+          seniorAssistance,
+          archanaAssistance,
+          specialNotes
+        }}
       />
     </section>
   );

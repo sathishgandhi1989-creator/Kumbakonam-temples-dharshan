@@ -15,7 +15,7 @@ export const Hero: React.FC<HeroProps> = ({ onPlanClick, currentLang }) => {
       {/* Subtle Background Ornamentation */}
       <div className="absolute inset-0 pointer-events-none opacity-5 bg-[radial-gradient(#72130e_1px,transparent_1px)] [background-size:16px_16px]" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="main-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Heading, Subtitle, Navigation Actions */}

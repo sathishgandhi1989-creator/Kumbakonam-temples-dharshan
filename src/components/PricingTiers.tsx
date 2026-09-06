@@ -48,7 +48,7 @@ export const PricingTiers: React.FC<PricingTiersProps> = ({
 
   return (
     <section id="pricing" className="py-20 bg-[#fffdf8] border-b border-[#ead9c0]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="main-container">
         {/* Section Head */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <p className="text-xs font-bold tracking-widest text-[#a03824] uppercase mb-2">

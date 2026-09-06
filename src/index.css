@@ -25,3 +25,11 @@ body {
   font-family: var(--font-serif);
 }
 
+.main-container {
+  width: 100%;
+  max-width: 1200px; /* Prevents the site from stretching too wide on PC */
+  margin: 0 auto;    /* Centers the website on desktop screens */
+  padding: 0 20px;   /* Adds a safe breathing space on the edges */
+  box-sizing: border-box;
+}
+

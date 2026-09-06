@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MessageCircle, Send, CheckCircle2, UserCheck, CreditCard, Sparkles } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../data/translations';
+import { WhatsAppMessageModal } from './WhatsAppMessageModal';
 
 interface ContactSectionProps {
   currentLang: Language;
@@ -12,6 +13,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) =
   const [recipient, setRecipient] = useState<'saranya' | 'ishwarya'>('saranya');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isWhatsAppModalOpen, setIsWhatsAppModalOpen] = useState(false);
 
   const t = TRANSLATIONS[currentLang];
   const saranya = t.packageInfoDepartment;
@@ -19,21 +21,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) =
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const isSaranya = recipient === 'saranya';
-    const targetOfficer = isSaranya
-      ? `${saranya.name}, ${saranya.qual} (${saranya.roleTitle})`
-      : `${ishwarya.name}, ${ishwarya.qual} (${ishwarya.roleTitle})`;
-
-    const encoded = encodeURIComponent(
-      `✨ KUMBAKONAM TEMPLES DARSHAN ✨\n📍 Attn: ${targetOfficer}\n\nName: ${name}\nPhone: ${phone}\nEnquiry / Temples: ${message}`
-    );
-    window.open(`https://wa.me/${t.phoneRaw}?text=${encoded}`, '_blank');
-    setSubmitted(true);
+    setIsWhatsAppModalOpen(true);
   };
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-[#65100c] via-[#751610] to-[#8b2117] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="main-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Direct info & Team Directory */}
           <div className="lg:col-span-7 space-y-6">
@@ -276,6 +269,23 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) =
           </div>
         </div>
       </div>
+
+      {/* WhatsApp Message Modal with Language Selection */}
+      <WhatsAppMessageModal
+        isOpen={isWhatsAppModalOpen}
+        onClose={() => {
+          setIsWhatsAppModalOpen(false);
+          setSubmitted(true);
+        }}
+        defaultLang={currentLang}
+        mode="contact"
+        contactData={{
+          name,
+          phone,
+          recipient,
+          message
+        }}
+      />
     </section>
   );
 };

@@ -13,7 +13,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ currentLang = 'en' }) 
 
   return (
     <section id="why" className="py-20 bg-[#fbf1df] border-b border-[#ecdcc6]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="main-container">
         {/* Section Head */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <p className="text-xs font-bold tracking-widest text-[#a03824] uppercase mb-2">
