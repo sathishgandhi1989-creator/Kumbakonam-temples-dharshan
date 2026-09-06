@@ -67,14 +67,14 @@ export function App() {
   const t = TRANSLATIONS[currentLang];
 
   return (
-    <div className="min-h-screen bg-[#fffdf8] text-[#2a211d] font-sans">
+    <div className="min-h-screen bg-[#fffdf8] text-[#2a211d] font-sans w-full overflow-x-hidden">
       <Header
         onPlanClick={scrollToSelection}
         currentLang={currentLang}
         onSelectLang={setCurrentLang}
       />
       
-      <main>
+      <main className="w-full">
         <Hero
           onPlanClick={scrollToSelection}
           currentLang={currentLang}

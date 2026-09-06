@@ -15,34 +15,34 @@ export const Hero: React.FC<HeroProps> = ({ onPlanClick, currentLang }) => {
       {/* Subtle Background Ornamentation */}
       <div className="absolute inset-0 pointer-events-none opacity-5 bg-[radial-gradient(#72130e_1px,transparent_1px)] [background-size:16px_16px]" />
       
-      <div className="main-container relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="main-container w-full max-w-[1200px] mx-auto px-4 sm:px-5 relative z-10 box-border">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
           
           {/* Left Column: Heading, Subtitle, Navigation Actions */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="w-full space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f6e5c9] border border-[#dcbfa3] text-[#72130e] text-xs font-bold tracking-wider uppercase">
               <span className="text-[#b27a20] text-sm font-bold">✦</span>
               <span>{t.hero.tag}</span>
               <span className="text-[#b27a20] text-sm font-bold">✦</span>
             </div>
 
-            <h1 className="font-cormorant text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#65100c] leading-none">
+            <h1 className="font-cormorant text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-[#65100c] leading-[1.15]">
               {t.hero.h1Line1} <br />
               <span className="text-[#8e2016] italic font-normal">
                 {t.hero.h1Line2}
               </span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-[#4a392f] max-w-2xl font-normal leading-relaxed">
+            <p className="text-base sm:text-lg text-[#4a392f] font-normal leading-relaxed">
               {t.hero.lead}
             </p>
 
-            <p className="text-xs sm:text-sm text-[#7a583f] max-w-xl italic">
+            <p className="text-xs sm:text-sm text-[#7a583f] italic">
               {t.hero.subLead}
             </p>
 
             {/* Main Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-2">
+            <div className="flex flex-wrap items-center gap-3.5 pt-1">
               <button
                 onClick={onPlanClick}
                 className="bg-[#72130e] hover:bg-[#580d09] text-white font-semibold text-sm px-6 py-3.5 rounded-full transition-all shadow hover:shadow-md flex items-center gap-2 cursor-pointer group"
@@ -81,58 +81,60 @@ export const Hero: React.FC<HeroProps> = ({ onPlanClick, currentLang }) => {
           </div>
 
           {/* Right Column: Sacred Kumbam and Nine Planets Logo Showcase */}
-          <div className="hero-art relative bg-gradient-to-b from-[#f7e2bd] to-[#ecd0a0] border border-[#dfc49e] rounded-2xl p-7 text-center shadow-lg overflow-hidden">
-            {/* Ambient Background Warm Halo */}
-            <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-[#f4bb4f]/30 blur-2xl pointer-events-none" />
+          <div className="w-full">
+            <div className="hero-art relative bg-gradient-to-b from-[#f7e2bd] to-[#ecd0a0] border border-[#dfc49e] rounded-2xl p-6 sm:p-7 text-center shadow-lg overflow-hidden w-full max-w-lg mx-auto lg:max-w-none">
+              {/* Ambient Background Warm Halo */}
+              <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-[#f4bb4f]/30 blur-2xl pointer-events-none" />
 
-            {/* Sacred Kumbam and Nine Planets Logo */}
-            <div className="relative mx-auto mb-4 w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden shadow-xl border-2 border-[#d2af7d] bg-[#fdf8f0] p-1.5 group">
-              <img
-                src="/kumbam_navagraha_logo.jpg"
-                alt="Kumbakonam Temples Darshan Sacred Kumbam and Nine Planets Logo"
-                className="w-full h-full object-contain rounded-xl hover:scale-105 transition-transform duration-500"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-
-            {/* Sacred Quote */}
-            <div className="font-cormorant text-xl italic font-semibold text-[#6b130d] leading-snug mb-1">
-              &ldquo;{t.tagline}&rdquo;
-            </div>
-
-            <div className="text-xs text-[#523d30] font-medium tracking-wide mb-4">
-              Kumbakonam &amp; Sacred Cauvery Delta
-            </div>
-
-            {/* Heritage Features List (Clean, devotional) */}
-            <div className="p-4 rounded-xl bg-white/85 backdrop-blur-sm border border-[#dfc5a2] text-left text-xs text-[#453328] space-y-2">
-              <div className="font-bold text-[#72130e] flex items-center gap-1.5 text-[11px] uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 text-[#b27a20]" />
-                <span>Sacred Pilgrimage Offerings</span>
+              {/* Sacred Kumbam and Nine Planets Logo */}
+              <div className="relative mx-auto mb-4 w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden shadow-xl border-2 border-[#d2af7d] bg-[#fdf8f0] p-1.5 group">
+                <img
+                  src="/kumbam_navagraha_logo.jpg"
+                  alt="Kumbakonam Temples Darshan Sacred Kumbam and Nine Planets Logo"
+                  className="w-full h-full object-contain rounded-xl hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
               </div>
 
-              <div className="text-[11px] text-[#554032] space-y-1.5 pt-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-[#b27a20]">✦</span>
-                  <span><strong>34 Sacred Shrines:</strong> Navagraha, Shiva, Divya Desams</span>
+              {/* Sacred Quote */}
+              <div className="font-cormorant text-xl italic font-semibold text-[#6b130d] leading-snug mb-1">
+                &ldquo;{t.tagline}&rdquo;
+              </div>
+
+              <div className="text-xs text-[#523d30] font-medium tracking-wide mb-4">
+                Kumbakonam &amp; Sacred Cauvery Delta
+              </div>
+
+              {/* Heritage Features List (Clean, devotional) */}
+              <div className="p-4 rounded-xl bg-white/85 backdrop-blur-sm border border-[#dfc5a2] text-left text-xs text-[#453328] space-y-2">
+                <div className="font-bold text-[#72130e] flex items-center gap-1.5 text-[11px] uppercase tracking-wider">
+                  <Sparkles className="w-3.5 h-3.5 text-[#b27a20]" />
+                  <span>Sacred Pilgrimage Offerings</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[#b27a20]">✦</span>
-                  <span><strong>Personalized Itineraries:</strong> Timing &amp; astrological alignment</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[#b27a20]">✦</span>
-                  <span><strong>Comfort &amp; Care:</strong> AC travel, senior assistance &amp; satvic dining</span>
+
+                <div className="text-[11px] text-[#554032] space-y-1.5 pt-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#b27a20]">✦</span>
+                    <span><strong>34 Sacred Shrines:</strong> Navagraha, Shiva, Divya Desams</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#b27a20]">✦</span>
+                    <span><strong>Personalized Itineraries:</strong> Timing &amp; astrological alignment</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#b27a20]">✦</span>
+                    <span><strong>Comfort &amp; Care:</strong> AC travel, senior assistance &amp; satvic dining</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="mt-4 pt-3 border-t border-[#d8bc92] flex items-center justify-center gap-4 text-[11px] text-[#6e160f] font-semibold">
-              <span>✦ 34 Shrines</span>
-              <span>•</span>
-              <span>✦ AC Cars</span>
-              <span>•</span>
-              <span>✦ Satvic Dining</span>
+              <div className="mt-4 pt-3 border-t border-[#d8bc92] flex items-center justify-center gap-4 text-[11px] text-[#6e160f] font-semibold">
+                <span>✦ 34 Shrines</span>
+                <span>•</span>
+                <span>✦ AC Cars</span>
+                <span>•</span>
+                <span>✦ Satvic Dining</span>
+              </div>
             </div>
           </div>
         </div>
