@@ -95,8 +95,8 @@ ${templeLines}
 📞 தொடர்புக்கு: +91 90253 04681
 • எஸ். சரண்யா, B.Tech (தொகுப்பு & கோவில் விபரங்கள்)
 • எஸ். ஐஸ்வர்யா, M.A. (முன்பதிவு & கட்டண உதவி)
-• இணையதளம்: www.kumbakonamtemplesdharshan.com
-• மின்னஞ்சல்: info@kumbakonamtemplesdharshan.com`;
+• இணையதளம்: www.kumbakonamtemplesdharsan.com
+• மின்னஞ்சல்: info@kumbakonamtemplesdharsan.com`;
   }
 
   if (lang === 'hi') {
@@ -118,8 +118,8 @@ ${templeLines}
 📞 संपर्क: +91 90253 04681
 • एस. शरण्या, B.Tech (पैकेज एवं मंदिर जानकारी)
 • एस. ऐश्वर्या, M.A. (बुकिंग एवं भुगतान सहायता)
-• वेबसाइट: www.kumbakonamtemplesdharshan.com
-• ईमेल: info@kumbakonamtemplesdharshan.com`;
+• वेबसाइट: www.kumbakonamtemplesdharsan.com
+• ईमेल: info@kumbakonamtemplesdharsan.com`;
   }
 
   // English default
@@ -141,8 +141,8 @@ Please share my custom route map, temple darshan timing schedule, and customized
 📞 Contact: +91 90253 04681
 • S. Saranya, B.Tech (Packages & Temple Info)
 • S. Ishwarya, M.A. (Bookings & Payments)
-• Website: www.kumbakonamtemplesdharshan.com
-• Email: info@kumbakonamtemplesdharshan.com`;
+• Website: www.kumbakonamtemplesdharsan.com
+• Email: info@kumbakonamtemplesdharsan.com`;
 }
 
 /**

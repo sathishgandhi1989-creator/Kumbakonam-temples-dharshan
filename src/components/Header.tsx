@@ -106,7 +106,7 @@ export const Header: React.FC<HeaderProps> = ({ onPlanClick, currentLang, onSele
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center gap-1 text-[#f4bb4f] hover:text-[#fff0d4] font-medium transition-colors px-1 py-0.5 rounded"
-              title="Official Website: www.kumbakonamtemplesdharshan.com"
+              title={`Official Website: ${t.website}`}
             >
               <Globe className="w-3.5 h-3.5 text-[#f4bb4f]" />
               <span className="text-[11px] font-semibold tracking-wide">{t.website}</span>

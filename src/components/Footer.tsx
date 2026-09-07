@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Compass, Globe } from 'lucide-react';
+import { MapPin, Compass, Globe, Mail } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../data/translations';
 
 interface FooterProps {
@@ -43,17 +43,29 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
                 : 'Personalized spiritual and heritage journeys through Kumbakonam, Thanjavur, and the sacred Cauvery region.'}
             </p>
             <div className="pt-2 space-y-2">
-              <a
-                href={t.websiteUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs text-[#f4bb4f] hover:text-[#fff0d4] font-semibold tracking-wide transition-colors"
-                title="Official Website"
-              >
-                <Globe className="w-3.5 h-3.5 text-[#f4bb4f]" />
-                <span>{t.website}</span>
-              </a>
               <div>
+                <a
+                  href={t.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-[#f4bb4f] hover:text-[#fff0d4] font-semibold tracking-wide transition-colors"
+                  title="Official Website"
+                >
+                  <Globe className="w-3.5 h-3.5 text-[#f4bb4f]" />
+                  <span>{t.website}</span>
+                </a>
+              </div>
+              <div>
+                <a
+                  href={`mailto:${t.email}`}
+                  className="inline-flex items-center gap-1.5 text-xs text-[#feddb0] hover:text-[#fff0d4] transition-colors"
+                  title="Official Email"
+                >
+                  <Mail className="w-3.5 h-3.5 text-[#f0c878]" />
+                  <span>{t.email}</span>
+                </a>
+              </div>
+              <div className="pt-1">
                 <span className="inline-block text-[11px] font-bold text-[#f4bb4f] bg-[#470f0b] px-3 py-1 rounded-full border border-[#6b1e17]">
                   ✦ {t.tagline} ✦
                 </span>
@@ -143,7 +155,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
         {/* Copyright & Website Link */}
         <div className="pt-8 border-t border-[#4d100c] text-center sm:flex sm:justify-between items-center text-xs text-[#bda89b] gap-4">
           <p>
-            © 2026 Kumbakonam Temples Dharshan •{' '}
+            © 2026 Kumbakonam Temples Dharsan •{' '}
             <a
               href={t.websiteUrl}
               target="_blank"

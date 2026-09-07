@@ -207,9 +207,9 @@ export interface Translations {
 const COMMON_PHONE = '+91 90253 04681';
 const COMMON_PHONE_RAW = '919025304681';
 const COMMON_WHATSAPP_LINK = 'https://wa.me/919025304681?text=Vanakkam%20Kumbakonam%20Temples%20Darshan%2C%20I%20would%20like%20information%20regarding%20temple%20itineraries%20and%20bookings.';
-const COMMON_EMAIL = 'info@kumbakonamtemplesdharshan.com';
-const COMMON_WEBSITE = 'www.kumbakonamtemplesdharshan.com';
-const COMMON_WEBSITE_URL = 'https://www.kumbakonamtemplesdharshan.com';
+const COMMON_EMAIL = 'info@kumbakonamtemplesdharsan.com';
+const COMMON_WEBSITE = 'www.kumbakonamtemplesdharsan.com';
+const COMMON_WEBSITE_URL = 'https://www.kumbakonamtemplesdharsan.com';
 
 export const TRANSLATIONS: Record<Language, Translations> = {
   en: {
