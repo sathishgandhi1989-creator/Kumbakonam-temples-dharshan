@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Compass } from 'lucide-react';
+import { MapPin, Compass, Globe } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../data/translations';
 
 interface FooterProps {
@@ -42,10 +42,22 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
                 ? 'कुंभकोणम, तंजावुर एवं पवित्र कावेरी क्षेत्र के प्राचीन मंदिरों हेतु व्यक्तिगत एवं शांत तीर्थ दर्शन सेवाएं।'
                 : 'Personalized spiritual and heritage journeys through Kumbakonam, Thanjavur, and the sacred Cauvery region.'}
             </p>
-            <div className="pt-2">
-              <span className="inline-block text-[11px] font-bold text-[#f4bb4f] bg-[#470f0b] px-3 py-1 rounded-full border border-[#6b1e17]">
-                ✦ {t.tagline} ✦
-              </span>
+            <div className="pt-2 space-y-2">
+              <a
+                href={t.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-[#f4bb4f] hover:text-[#fff0d4] font-semibold tracking-wide transition-colors"
+                title="Official Website"
+              >
+                <Globe className="w-3.5 h-3.5 text-[#f4bb4f]" />
+                <span>{t.website}</span>
+              </a>
+              <div>
+                <span className="inline-block text-[11px] font-bold text-[#f4bb4f] bg-[#470f0b] px-3 py-1 rounded-full border border-[#6b1e17]">
+                  ✦ {t.tagline} ✦
+                </span>
+              </div>
             </div>
           </div>
 
@@ -128,10 +140,21 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="pt-8 border-t border-[#4d100c] text-center sm:flex sm:justify-between text-xs text-[#bda89b]">
-          <p>© 2026 Kumbakonam Temples Darshan. All rights reserved.</p>
-          <p className="mt-2 sm:mt-0 flex items-center justify-center gap-1">
+        {/* Copyright & Website Link */}
+        <div className="pt-8 border-t border-[#4d100c] text-center sm:flex sm:justify-between items-center text-xs text-[#bda89b] gap-4">
+          <p>
+            © 2026 Kumbakonam Temples Dharshan •{' '}
+            <a
+              href={t.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#f4bb4f] hover:underline font-medium"
+            >
+              {t.website}
+            </a>
+            {' '}• All rights reserved.
+          </p>
+          <p className="mt-2 sm:mt-0 flex items-center justify-center gap-1 shrink-0">
             <MapPin className="w-3.5 h-3.5 text-[#f4bb4f]" />
             <span>Kumbakonam, Thanjavur District, Tamil Nadu, India</span>
           </p>

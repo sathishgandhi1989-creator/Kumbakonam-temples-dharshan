@@ -20,6 +20,8 @@ export interface Translations {
   phoneRaw: string;
   whatsappLink: string;
   email: string;
+  website: string;
+  websiteUrl: string;
   nav: {
     home: string;
     about: string;
@@ -205,7 +207,9 @@ export interface Translations {
 const COMMON_PHONE = '+91 90253 04681';
 const COMMON_PHONE_RAW = '919025304681';
 const COMMON_WHATSAPP_LINK = 'https://wa.me/919025304681?text=Vanakkam%20Kumbakonam%20Temples%20Darshan%2C%20I%20would%20like%20information%20regarding%20temple%20itineraries%20and%20bookings.';
-const COMMON_EMAIL = 'info@kumbakonamtemplesdharsan.ae';
+const COMMON_EMAIL = 'info@kumbakonamtemplesdharshan.com';
+const COMMON_WEBSITE = 'www.kumbakonamtemplesdharshan.com';
+const COMMON_WEBSITE_URL = 'https://www.kumbakonamtemplesdharshan.com';
 
 export const TRANSLATIONS: Record<Language, Translations> = {
   en: {
@@ -217,6 +221,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     phoneRaw: COMMON_PHONE_RAW,
     whatsappLink: COMMON_WHATSAPP_LINK,
     email: COMMON_EMAIL,
+    website: COMMON_WEBSITE,
+    websiteUrl: COMMON_WEBSITE_URL,
     nav: {
       home: 'Home',
       about: 'About',
@@ -453,6 +459,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     phoneRaw: COMMON_PHONE_RAW,
     whatsappLink: COMMON_WHATSAPP_LINK,
     email: COMMON_EMAIL,
+    website: COMMON_WEBSITE,
+    websiteUrl: COMMON_WEBSITE_URL,
     nav: {
       home: 'முகப்பு',
       about: 'எங்களை பற்றி',
@@ -689,6 +697,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     phoneRaw: COMMON_PHONE_RAW,
     whatsappLink: COMMON_WHATSAPP_LINK,
     email: COMMON_EMAIL,
+    website: COMMON_WEBSITE,
+    websiteUrl: COMMON_WEBSITE_URL,
     nav: {
       home: 'होम',
       about: 'हमारे बारे में',

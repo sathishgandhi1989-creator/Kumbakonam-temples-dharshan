@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Menu, X, Compass, ChevronDown } from 'lucide-react';
+import { Sparkles, Menu, X, Compass, ChevronDown, Globe } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../data/translations';
 import { GoldenVinayagar } from './GoldenVinayagar';
 
@@ -99,8 +99,19 @@ export const Header: React.FC<HeaderProps> = ({ onPlanClick, currentLang, onSele
             </span>
           </div>
 
-          {/* Right: Language Selector + Quick Link to Designated Contact Area */}
+          {/* Right: Official Website + Language Selector + Quick Link to Designated Contact Area */}
           <div className="flex items-center gap-2 sm:gap-3 text-xs">
+            <a
+              href={t.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex items-center gap-1 text-[#f4bb4f] hover:text-[#fff0d4] font-medium transition-colors px-1 py-0.5 rounded"
+              title="Official Website: www.kumbakonamtemplesdharshan.com"
+            >
+              <Globe className="w-3.5 h-3.5 text-[#f4bb4f]" />
+              <span className="text-[11px] font-semibold tracking-wide">{t.website}</span>
+            </a>
+
             <LanguageSelector
               currentLang={currentLang}
               onSelectLang={onSelectLang}

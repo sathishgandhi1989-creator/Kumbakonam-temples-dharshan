@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MessageCircle, Send, CheckCircle2, UserCheck, CreditCard, Sparkles } from 'lucide-react';
+import { Phone, Mail, MessageCircle, Send, CheckCircle2, UserCheck, CreditCard, Sparkles, Globe } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../data/translations';
 import { WhatsAppMessageModal } from './WhatsAppMessageModal';
 
@@ -133,20 +133,37 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) =
               </div>
             </div>
 
-            {/* Support Hours & Email */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/15 text-xs text-[#feddb0]">
-              <div className="flex items-center gap-2">
-                <span className="text-[#f4bb4f]">⏰</span>
-                <span>Assistance Hours: 7:00 AM – 9:30 PM Everyday</span>
+            {/* Support Hours, Official Website & Email */}
+            <div className="space-y-3 pt-4 border-t border-white/15 text-xs text-[#feddb0]">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-[#f4bb4f]">⏰</span>
+                  <span>Assistance Hours: 7:00 AM – 9:30 PM Everyday</span>
+                </div>
+
+                <span className="text-[#f4bb4f] font-semibold">✦ Direct Delta Support</span>
               </div>
 
-              <a
-                href={`mailto:${t.email}`}
-                className="bg-white/10 hover:bg-white/20 text-[#fff9ef] font-semibold text-xs px-4 py-2 rounded-full transition-all flex items-center gap-1.5 border border-white/20"
-              >
-                <Mail className="w-3.5 h-3.5 text-[#f0c878]" />
-                <span>{t.email}</span>
-              </a>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={t.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/10 hover:bg-white/20 text-[#fff9ef] font-semibold text-xs px-4 py-2 rounded-full transition-all flex items-center gap-2 border border-white/20 hover:border-[#f4bb4f]"
+                  title="Visit Official Website"
+                >
+                  <Globe className="w-3.5 h-3.5 text-[#f4bb4f]" />
+                  <span>{t.website}</span>
+                </a>
+
+                <a
+                  href={`mailto:${t.email}`}
+                  className="bg-white/10 hover:bg-white/20 text-[#fff9ef] font-semibold text-xs px-4 py-2 rounded-full transition-all flex items-center gap-2 border border-white/20"
+                >
+                  <Mail className="w-3.5 h-3.5 text-[#f0c878]" />
+                  <span>{t.email}</span>
+                </a>
+              </div>
             </div>
           </div>
 
