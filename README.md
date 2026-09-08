@@ -1,7 +1,8 @@
-# Kumbakonam Temples Dharshan (கும்பகோணம் டெம்பிள்ஸ் தர்ஷன்)
+# Kumbakonam Temples Dharsan (கும்பகோணம் டெம்பிள்ஸ் தர்ஷன்)
 
 > **Personalized Spiritual and Heritage Journeys across Kumbakonam & the Sacred Cauvery Delta.**
 > *"Your Time. Your Purpose. Your Journey."*
+> **Official Website:** [www.kumbakonamtemplesdharsan.com](https://www.kumbakonamtemplesdharsan.com) • **Email:** info@kumbakonamtemplesdharsan.com
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?logo=vite)](https://vitejs.dev/)
@@ -12,7 +13,7 @@
 
 ## 🛕 About the Project
 
-**Kumbakonam Temples Dharshan** is a modern, responsive web application and interactive pilgrimage customizer crafted for devotees, travelers, and heritage enthusiasts exploring the sacred Chola temple belt around Kumbakonam, Thanjavur, and Mayiladuthurai in Tamil Nadu, India.
+**Kumbakonam Temples Dharsan** is a modern, responsive web application and interactive pilgrimage customizer crafted for devotees, travelers, and heritage enthusiasts exploring the sacred Chola temple belt around Kumbakonam, Thanjavur, and Mayiladuthurai in Tamil Nadu, India.
 
 ### Key Highlights
 - **Curated 34-Shrine Catalog**:
