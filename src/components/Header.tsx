@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Menu, X, Compass, ChevronDown, Globe } from 'lucide-react';
+import { Sparkles, Menu, X, Compass, ChevronDown, Globe, Download } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../data/translations';
 import { GoldenVinayagar } from './GoldenVinayagar';
 
@@ -117,6 +117,16 @@ export const Header: React.FC<HeaderProps> = ({ onPlanClick, currentLang, onSele
               onSelectLang={onSelectLang}
             />
 
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent('trigger-pwa-install'))}
+              className="bg-linear-to-r from-[#b27a20] to-[#c98e29] hover:from-[#c98e29] hover:to-[#dfa033] text-[#2a0604] font-bold px-2 py-1 rounded text-[11px] flex items-center gap-1 shadow-xs transition-all cursor-pointer"
+              title="Install Kumbakonam Temples App on your device"
+            >
+              <Download className="w-3 h-3 text-[#2a0604]" />
+              <span>{currentLang === 'ta' ? 'ஆப் நிறுவுக' : currentLang === 'hi' ? 'ऐप इंस्टॉल' : 'Install App'}</span>
+            </button>
+
             <a
               href="#contact"
               className="bg-[#781712] hover:bg-[#8f1f18] text-[#ffe9c9] px-2.5 py-1 rounded text-[11px] font-semibold transition-colors border border-[#a3322a]"
@@ -221,6 +231,18 @@ export const Header: React.FC<HeaderProps> = ({ onPlanClick, currentLang, onSele
 
             {/* Quick Actions in Mobile Drawer */}
             <div className="pt-3 border-t border-[#ebdcc7] space-y-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  window.dispatchEvent(new CustomEvent('trigger-pwa-install'));
+                }}
+                className="w-full bg-linear-to-r from-[#b27a20] to-[#c98e29] hover:from-[#c98e29] hover:to-[#dfa033] text-[#2a0604] text-xs font-bold py-2.5 px-3 rounded-lg flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+              >
+                <Download className="w-3.5 h-3.5 text-[#2a0604]" />
+                <span>{currentLang === 'ta' ? '📲 மொபைல் ஆப் நிறுவுக' : currentLang === 'hi' ? '📲 मोबाइल ऐप इंस्टॉल करें' : '📲 Install App on Phone'}</span>
+              </button>
+
               <a
                 href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}

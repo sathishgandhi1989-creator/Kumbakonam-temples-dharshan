@@ -11,6 +11,7 @@ import { WhyChooseUs } from './components/WhyChooseUs';
 import { HeritageGuide } from './components/HeritageGuide';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { ServiceTierId } from './types';
 import { ALL_TEMPLES } from './data/temples';
 import { Language, TRANSLATIONS } from './data/translations';
@@ -175,6 +176,9 @@ export function App() {
           </button>
         </div>
       </aside>
+
+      {/* PWA In-App Install Prompt & Offline State */}
+      <PWAInstallBanner />
     </div>
   );
 }
