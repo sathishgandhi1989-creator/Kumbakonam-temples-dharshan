@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MessageCircle, Send, CheckCircle2, UserCheck, CreditCard, Sparkles, Globe } from 'lucide-react';
+import { Phone, Mail, MessageCircle, Send, CheckCircle2, UserCheck, Sparkles, Globe } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../data/translations';
 import { WhatsAppMessageModal } from './WhatsAppMessageModal';
 
@@ -10,14 +10,12 @@ interface ContactSectionProps {
 export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [recipient, setRecipient] = useState<'saranya' | 'ishwarya'>('saranya');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isWhatsAppModalOpen, setIsWhatsAppModalOpen] = useState(false);
 
   const t = TRANSLATIONS[currentLang];
-  const saranya = t.packageInfoDepartment;
-  const ishwarya = t.bookingPaymentDepartment;
+  const coordinator = t.packageInfoDepartment;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,89 +42,77 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) =
               {t.contactBookingSubtitle}
             </p>
 
-            {/* Officer Highlight Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              {/* S. Saranya, B.Tech */}
-              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/15 space-y-2 hover:bg-white/15 transition-colors">
-                <div className="flex items-center gap-2 text-[#f4bb4f] text-xs font-bold uppercase tracking-wider">
+            {/* Unified Coordinator Card for Panneerselvam */}
+            <div className="bg-white/10 backdrop-blur-md p-5 sm:p-6 rounded-2xl border border-white/20 shadow-xl space-y-4 hover:border-white/35 transition-all">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f4bb4f]/20 border border-[#f4bb4f]/40 text-[#f4bb4f] text-xs font-bold uppercase tracking-wider">
                   <UserCheck className="w-3.5 h-3.5" />
-                  <span>📋 {saranya.roleTitle}</span>
+                  <span>{coordinator.roleTitle}</span>
                 </div>
-                <div className="font-cormorant text-xl font-bold text-white flex items-center gap-1.5">
-                  <span>{saranya.name}</span>
-                  <span className="text-[11px] font-sans font-semibold text-[#f0c878]">
-                    ({saranya.qual})
-                  </span>
-                </div>
-                <p className="text-xs text-[#feddb0] leading-snug">
-                  {saranya.services}
-                </p>
-
-                {/* Direct Phone Number display */}
-                <div className="bg-black/20 px-3 py-1.5 rounded-lg text-xs flex items-center justify-between">
-                  <span className="text-[#f7e4ce] text-[11px]">Mobile / WhatsApp:</span>
-                  <span className="font-bold text-[#f4bb4f] tracking-wide">{saranya.phone}</span>
-                </div>
-
-                <div className="pt-1 flex items-center gap-3">
-                  <a
-                    href={saranya.whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-bold text-[#98e2ac] hover:text-white underline transition-colors"
-                  >
-                    <MessageCircle className="w-3.5 h-3.5" />
-                    <span>WhatsApp</span>
-                  </a>
-                  <span className="text-white/40">•</span>
-                  <a
-                    href={`tel:${saranya.phoneRaw}`}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-[#feddb0] hover:text-white transition-colors"
-                  >
-                    <Phone className="w-3 h-3 text-[#f0c878]" />
-                    <span>Call Directly</span>
-                  </a>
+                <div className="text-[11px] text-[#98e2ac] font-semibold flex items-center gap-1.5 bg-[#19783b]/30 px-2.5 py-1 rounded-full border border-[#19783b]/50">
+                  <span className="w-2 h-2 rounded-full bg-[#98e2ac] animate-pulse"></span>
+                  <span>Direct Tour & Booking Support</span>
                 </div>
               </div>
 
-              {/* S. Ishwarya, M.A. */}
-              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/15 space-y-2 hover:bg-white/15 transition-colors">
-                <div className="flex items-center gap-2 text-[#98e2ac] text-xs font-bold uppercase tracking-wider">
-                  <CreditCard className="w-3.5 h-3.5" />
-                  <span>💳 {ishwarya.roleTitle}</span>
+              <div>
+                <div className="font-cormorant text-2xl sm:text-3xl font-bold text-white tracking-wide">
+                  {coordinator.name}
                 </div>
-                <div className="font-cormorant text-xl font-bold text-white flex items-center gap-1.5">
-                  <span>{ishwarya.name}</span>
-                  <span className="text-[11px] font-sans font-semibold text-[#f0c878]">
-                    ({ishwarya.qual})
-                  </span>
-                </div>
-                <p className="text-xs text-[#feddb0] leading-snug">
-                  {ishwarya.services}
+                <p className="text-xs sm:text-sm font-semibold text-[#f0c878] mt-0.5">
+                  {coordinator.services}
                 </p>
+              </div>
 
-                {/* Direct Phone Number display */}
-                <div className="bg-black/20 px-3 py-1.5 rounded-lg text-xs flex items-center justify-between">
-                  <span className="text-[#f7e4ce] text-[11px]">Mobile / WhatsApp:</span>
-                  <span className="font-bold text-[#98e2ac] tracking-wide">{ishwarya.phone}</span>
+              <p className="text-xs sm:text-sm text-[#feddb0] leading-relaxed">
+                {coordinator.description}
+              </p>
+
+              {/* Service Feature Badges */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-xs">
+                <div className="bg-black/25 px-2.5 py-1.5 rounded-lg border border-white/10 text-[#feddb0] flex items-center gap-1.5">
+                  <span>🚗</span>
+                  <span className="font-medium">AC Vehicles</span>
+                </div>
+                <div className="bg-black/25 px-2.5 py-1.5 rounded-lg border border-white/10 text-[#feddb0] flex items-center gap-1.5">
+                  <span>🛕</span>
+                  <span className="font-medium">34 Temples</span>
+                </div>
+                <div className="bg-black/25 px-2.5 py-1.5 rounded-lg border border-white/10 text-[#feddb0] flex items-center gap-1.5">
+                  <span>🏨</span>
+                  <span className="font-medium">Stays & Food</span>
+                </div>
+                <div className="bg-black/25 px-2.5 py-1.5 rounded-lg border border-white/10 text-[#feddb0] flex items-center gap-1.5">
+                  <span>♿</span>
+                  <span className="font-medium">Senior Care</span>
+                </div>
+              </div>
+
+              {/* Direct Phone & Action Controls */}
+              <div className="bg-black/30 p-3 sm:p-4 rounded-xl border border-white/15 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3">
+                <div>
+                  <div className="text-[11px] text-[#feddb0] uppercase tracking-wider">Mobile & WhatsApp</div>
+                  <div className="font-cormorant text-2xl font-bold text-[#f4bb4f] tracking-wide">
+                    {coordinator.phone}
+                  </div>
                 </div>
 
-                <div className="pt-1 flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <a
-                    href={ishwarya.whatsappLink}
+                    href={coordinator.whatsappLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-bold text-[#98e2ac] hover:text-white underline transition-colors"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#19783b] hover:bg-[#145f2f] text-white font-bold text-xs shadow-md transition-all cursor-pointer"
                   >
-                    <MessageCircle className="w-3.5 h-3.5" />
+                    <MessageCircle className="w-4 h-4 text-[#a2f0b7]" />
                     <span>WhatsApp</span>
                   </a>
-                  <span className="text-white/40">•</span>
+
                   <a
-                    href={`tel:${ishwarya.phoneRaw}`}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-[#feddb0] hover:text-white transition-colors"
+                    href={`tel:${coordinator.phoneRaw}`}
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 text-white font-bold text-xs transition-all"
                   >
-                    <Phone className="w-3 h-3 text-[#f0c878]" />
+                    <Phone className="w-4 h-4 text-[#f0c878]" />
                     <span>Call Directly</span>
                   </a>
                 </div>
@@ -192,42 +178,24 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) =
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Officer Selection */}
-                <div>
-                  <label className="text-xs font-bold text-[#55453a] uppercase block mb-1">
-                    Direct To Coordinator
-                  </label>
-                  <div className="grid grid-cols-2 gap-2 text-xs font-semibold">
-                    <button
-                      type="button"
-                      onClick={() => setRecipient('saranya')}
-                      className={`p-2.5 rounded-xl border text-left transition-all ${
-                        recipient === 'saranya'
-                          ? 'bg-[#72130e] text-white border-[#72130e] shadow'
-                          : 'bg-white border-[#dacbb5] text-[#55453a] hover:bg-[#fff7ec]'
-                      }`}
-                    >
-                      <div className="font-bold">S. Saranya (B.Tech)</div>
-                      <div className={`text-[10px] ${recipient === 'saranya' ? 'text-[#f4bb4f]' : 'text-[#8a2b1d]'}`}>
-                        Packages: {saranya.phone}
-                      </div>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setRecipient('ishwarya')}
-                      className={`p-2.5 rounded-xl border text-left transition-all ${
-                        recipient === 'ishwarya'
-                          ? 'bg-[#19783b] text-white border-[#19783b] shadow'
-                          : 'bg-white border-[#dacbb5] text-[#55453a] hover:bg-[#eef8f1]'
-                      }`}
-                    >
-                      <div className="font-bold">S. Ishwarya (M.A.)</div>
-                      <div className={`text-[10px] ${recipient === 'ishwarya' ? 'text-[#a2f0b7]' : 'text-[#19783b]'}`}>
-                        Bookings: {ishwarya.phone}
-                      </div>
-                    </button>
+                {/* Officer Indicator */}
+                <div className="bg-[#fcf8f2] border border-[#e2d5c2] p-3 rounded-xl flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-full bg-[#72130e] text-white flex items-center justify-center font-bold text-xs">
+                      P
+                    </div>
+                    <div>
+                      <div className="font-bold text-xs text-[#530c08]">Panneerselvam (பன்னீர்செல்வம்)</div>
+                      <div className="text-[11px] text-[#7d6550]">Pilgrimage Coordinator • +91 82205 02766</div>
+                    </div>
                   </div>
+                  <a
+                    href={`tel:${coordinator.phoneRaw}`}
+                    className="px-2.5 py-1 rounded-lg bg-[#19783b] text-white font-bold text-xs flex items-center gap-1 hover:bg-[#145f2f] transition-colors"
+                  >
+                    <Phone className="w-3 h-3" />
+                    <span>Call</span>
+                  </a>
                 </div>
 
                 <div>
@@ -274,11 +242,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) =
 
                 <button
                   type="submit"
-                  className="w-full bg-[#19783b] hover:bg-[#135f2f] text-white text-xs font-bold py-3.5 rounded-xl transition-all shadow flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full bg-[#19783b] hover:bg-[#135f2f] text-white text-xs sm:text-sm font-bold py-3.5 rounded-xl transition-all shadow flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>
-                    Send to {recipient === 'saranya' ? `S. Saranya (${saranya.phone})` : `S. Ishwarya (${ishwarya.phone})`} on WhatsApp
+                    Send to Panneerselvam ({coordinator.phone}) on WhatsApp
                   </span>
                 </button>
               </form>
@@ -299,7 +267,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ currentLang }) =
         contactData={{
           name,
           phone,
-          recipient,
+          recipient: 'panneerselvam',
           message
         }}
       />

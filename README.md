@@ -21,7 +21,7 @@
   - **Package 2 · Suburb & West Highway**: Thirunageswaram Rahu temple, Patteswaram Durga, Thirubuvanam Sarabeswarar, and Alangudi Guru.
   - **Package 3 · Kumbakonam Town**: Adi Kumbeswarar, Ayyavadi Sri Maha Pratyangira Devi, and Chola Ugra Bhairavar.
 - **Interactive Pilgrimage Planner**: Filter temples by category (Navagraha, Shiva/Chola, Divya Desam, Amman/Devi, Remedial), customize vehicle preferences (Innova Crysta, Ertiga, Sedan), choose service tiers (Economy, Premium, Elite), and specify satvic food or senior-friendly pacing.
-- **1-Click WhatsApp Enquiry**: Formats chosen shrines, dates, and vehicle requirements into a pre-filled WhatsApp message sent directly to `+91 90253 04681`.
+- **1-Click WhatsApp Enquiry**: Formats chosen shrines, dates, and vehicle requirements into a pre-filled WhatsApp message sent directly to `+91 82205 02766`.
 - **Bilingual Typographic Aesthetics**: Traditional temple crimson & sand color palette with Tamil and English script support.
 
 ---
@@ -125,10 +125,12 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## 📞 Contact
+## 📞 Contact & Booking
 
 **Kumbakonam Temples Dharshan**  
 Kumbakonam, Thanjavur District, Tamil Nadu, India  
-- **WhatsApp**: [+91 90253 04681](https://wa.me/919025304681)  
-- **Phone**: +91 90253 04681  
-- **Email**: info@kumbakonamtempledharsan.ae  
+- **Contact Person**: Panneerselvam  
+- **WhatsApp**: [+91 82205 02766](https://wa.me/918220502766)  
+- **Phone**: +91 82205 02766  
+- **Email**: info@kumbakonamtemplesdharsan.com  
+- **Website**: [www.kumbakonamtemplesdharsan.com](https://www.kumbakonamtemplesdharsan.com)

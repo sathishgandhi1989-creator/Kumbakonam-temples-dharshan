@@ -204,9 +204,9 @@ export interface Translations {
   };
 }
 
-const COMMON_PHONE = '+91 90253 04681';
-const COMMON_PHONE_RAW = '919025304681';
-const COMMON_WHATSAPP_LINK = 'https://wa.me/919025304681?text=Vanakkam%20Kumbakonam%20Temples%20Darshan%2C%20I%20would%20like%20information%20regarding%20temple%20itineraries%20and%20bookings.';
+const COMMON_PHONE = '+91 82205 02766';
+const COMMON_PHONE_RAW = '918220502766';
+const COMMON_WHATSAPP_LINK = 'https://wa.me/918220502766?text=Vanakkam%20Panneerselvam%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20information%20regarding%20temple%20itineraries%20and%20bookings.';
 const COMMON_EMAIL = 'info@kumbakonamtemplesdharsan.com';
 const COMMON_WEBSITE = 'www.kumbakonamtemplesdharsan.com';
 const COMMON_WEBSITE_URL = 'https://www.kumbakonamtemplesdharsan.com';
@@ -239,24 +239,24 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     contactBookingTitle: 'CONTACT & BOOKING',
     contactBookingSubtitle: 'Direct, dedicated support for your sacred pilgrimage planning and reservations',
     packageInfoDepartment: {
-      roleTitle: 'PACKAGE & TEMPLE INFORMATION',
-      name: 'S. Saranya',
-      qual: 'B.Tech',
-      services: 'Travel Packages | Temple Details | Tour Assistance',
-      description: 'Expert guidance on 34 sacred delta temples, custom itineraries, astrology & planetary remedies, temple timings, and route logistics.',
+      roleTitle: 'PILGRIMAGE, BOOKINGS & TRAVEL COORDINATOR',
+      name: 'Panneerselvam',
+      qual: 'Chief Tour Coordinator',
+      services: 'Travel Packages | AC Vehicles | Stays & Satvic Food | All Bookings',
+      description: 'Complete assistance for 34 sacred delta temples, custom itineraries, astrology & planetary remedies, AC vehicles (Innova Crysta, Ertiga, Tempo Traveller), comfortable stays, satvic dining, and instant booking confirmations.',
       phone: COMMON_PHONE,
       phoneRaw: COMMON_PHONE_RAW,
-      whatsappLink: 'https://wa.me/919025304681?text=Vanakkam%20S.Saranya%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20information%20regarding%20travel%20packages%20and%20temple%20itineraries.'
+      whatsappLink: 'https://wa.me/918220502766?text=Vanakkam%20Panneerselvam%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20information%20regarding%20travel%20packages%2C%20vehicles%20and%20temple%20bookings.'
     },
     bookingPaymentDepartment: {
-      roleTitle: 'BOOKINGS & PAYMENTS',
-      name: 'S. Ishwarya',
-      qual: 'M.A.',
-      services: 'Booking Support | Payment Assistance | Confirmation',
-      description: 'Dedicated reservations for AC vehicles (Innova Crysta, Ertiga, Tempo Traveller), satvic stay arrangements, and payment confirmations.',
+      roleTitle: 'PILGRIMAGE, BOOKINGS & TRAVEL COORDINATOR',
+      name: 'Panneerselvam',
+      qual: 'Chief Tour Coordinator',
+      services: 'Travel Packages | AC Vehicles | Stays & Satvic Food | All Bookings',
+      description: 'Complete assistance for 34 sacred delta temples, custom itineraries, astrology & planetary remedies, AC vehicles (Innova Crysta, Ertiga, Tempo Traveller), comfortable stays, satvic dining, and instant booking confirmations.',
       phone: COMMON_PHONE,
       phoneRaw: COMMON_PHONE_RAW,
-      whatsappLink: 'https://wa.me/919025304681?text=Vanakkam%20S.Ishwarya%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20assistance%20with%20booking%20and%20payment%20confirmation.'
+      whatsappLink: 'https://wa.me/918220502766?text=Vanakkam%20Panneerselvam%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20information%20regarding%20travel%20packages%2C%20vehicles%20and%20temple%20bookings.'
     },
     hero: {
       tag: 'Spiritual • Heritage • Custom Journeys',
@@ -265,8 +265,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       lead: 'Discover meaningful temple, heritage and Cauvery-region journeys designed around your time, purpose, comfort and budget.',
       subLead: 'Personalized spiritual and heritage journeys to Kumbakonam and the sacred Cauvery delta.',
       planBtn: '✦ Plan Your Journey',
-      whatsappBtn: '◉ WhatsApp (+91 90253 04681)',
-      callBtn: 'Call +91 90253 04681',
+      whatsappBtn: '◉ WhatsApp (+91 82205 02766)',
+      callBtn: 'Call +91 82205 02766',
       pillars: {
         astrology: 'Astrology & Remedies',
         routes: 'Chola & Cauvery Routes',
@@ -276,13 +276,13 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     },
     contactForm: {
       title: 'Quick Direct Inquiry',
-      subtitle: 'Connect directly with S. Saranya (Packages) or S. Ishwarya (Bookings) on +91 90253 04681.',
+      subtitle: 'Connect directly with Panneerselvam on +91 82205 02766 for instant tour guidance and reservations.',
       yourName: 'Your Name',
       phoneLabel: 'Phone / WhatsApp Number',
       messageLabel: 'Message / Temples of Interest',
       namePlaceholder: 'e.g. Ramanathan / Priya / Sharma',
       messagePlaceholder: 'Specify preferred travel dates, family size, senior assistance or special shrines...',
-      sendBtn: 'Send via WhatsApp (+91 90253 04681)',
+      sendBtn: 'Send via WhatsApp (+91 82205 02766)',
       successTitle: 'Inquiry Prepared!',
       successMessage: 'Your message has been directed to our coordinator on WhatsApp.',
       anotherBtn: 'Send another inquiry'
@@ -325,10 +325,10 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       summaryTemplesSelected: 'Temples Selected',
       summaryServiceTier: 'Service Comfort Tier',
       summaryAssistance: 'Special Assistance Included',
-      sendRouteWhatsApp: 'Send Route via WhatsApp (+91 90253 04681)',
+      sendRouteWhatsApp: 'Send Route via WhatsApp (+91 82205 02766)',
       copyRoute: 'Copy Route Itinerary',
       copiedAlert: 'Itinerary copied to clipboard!',
-      helpNotice: 'Instant confirmation by S. Saranya & S. Ishwarya on +91 90253 04681'
+      helpNotice: 'Instant confirmation by Panneerselvam on +91 82205 02766'
     },
     modal: {
       presidingDeity: 'Presiding Deity & Sanctum',
@@ -427,7 +427,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         { title: 'Completely Personalized', desc: 'Your birth chart, ancestral roots, personal prayers, and pacing dictate every turn of the road.' },
         { title: 'Senior & Family Care', desc: 'Wheelchair assistance, ground-floor rooms, gentle walking distances, and patient drivers.' },
         { title: '100% Satvic Hospitality', desc: 'Hygienic, purely vegetarian food prepared with traditional delta recipes that soothe the mind.' },
-        { title: 'Direct Direct Coordinators', desc: 'Reach S. Saranya & S. Ishwarya directly on +91 90253 04681 without call center delays.' }
+        { title: 'Direct Tour Coordinator', desc: 'Reach Panneerselvam directly on +91 82205 02766 without call center delays.' }
       ]
     },
     guideSection: {
@@ -475,26 +475,26 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       helpline: 'தொடர்பு அதிகாரிகள்'
     },
     contactBookingTitle: 'தொடர்பு & முன்பதிவு (CONTACT & BOOKING)',
-    contactBookingSubtitle: 'உங்கள் திருத்தல தரிசனப் பயணத்தை திட்டமிடவும் உறுதி செய்யவும் நேரடி உதவி எண்: +91 90253 04681',
+    contactBookingSubtitle: 'உங்கள் திருத்தல தரிசனப் பயணத்தை திட்டமிடவும் உறுதி செய்யவும் நேரடி உதவி எண்: +91 82205 02766',
     packageInfoDepartment: {
-      roleTitle: 'தொகுப்பு & கோவில் விவரங்கள் (PACKAGE & TEMPLE INFORMATION)',
-      name: 'எஸ். சரண்யா (S. Saranya)',
-      qual: 'B.Tech',
-      services: 'சுற்றுலாத் தொகுப்புகள் | கோவில் விவரங்கள் | பயண வழிகாட்டல் (Travel Packages | Temple Details | Tour Assistance)',
-      description: '34 புனிதத் தலங்கள், பரிகார தலங்கள், தோஷ நிவர்த்தி, நடை திறக்கும் நேரங்கள் மற்றும் தனிப்பயன் பயணத் திட்ட ஆலோசனை.',
+      roleTitle: 'முழுமையான ஆன்மீக & பயண ஒருங்கிணைப்பாளர்',
+      name: 'பன்னீர்செல்வம் (Panneerselvam)',
+      qual: 'தலைமைப் பயண ஒருங்கிணைப்பாளர்',
+      services: 'தனிப்பயன் பயணத் திட்டம் | AC வாகனங்கள் | தங்குமிடம் & சாத்வீக உணவு | அனைத்து முன்பதிவுகள்',
+      description: '34 புனிதக் கோவில்கள் தரிசனம், நவகிரக பரிகார வழிபாடுகள், AC வாகன முன்பதிவு (இன்னோவா, எர்டிகா, வேன்), தங்கும் விடுதி மற்றும் சாத்வீக உணவுக்கான முழுமையான ஒருங்கிணைப்பு.',
       phone: COMMON_PHONE,
       phoneRaw: COMMON_PHONE_RAW,
-      whatsappLink: 'https://wa.me/919025304681?text=Vanakkam%20S.Saranya%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20information%20regarding%20travel%20packages%20and%20temple%20itineraries.'
+      whatsappLink: 'https://wa.me/918220502766?text=Vanakkam%20Panneerselvam%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20information%20regarding%20travel%20packages%2C%20vehicles%20and%20temple%20bookings.'
     },
     bookingPaymentDepartment: {
-      roleTitle: 'முன்பதிவு & கட்டணங்கள் (BOOKINGS & PAYMENTS)',
-      name: 'எஸ். ஐஸ்வர்யா (S. Ishwarya)',
-      qual: 'M.A.',
-      services: 'முன்பதிவு உதவி | கட்டண வழிகாட்டல் | பயண உறுதிப்படுத்தல் (Booking Support | Payment Assistance | Confirmation)',
-      description: 'வாகனம் (இன்னோவா, எர்டிகா, வேன்), தங்கும் விடுதிகள், சாத்வீக உணவு ஏற்பாடுகள், முன்பதிவு மற்றும் ரசீது உறுதிப்படுத்தல்.',
+      roleTitle: 'முழுமையான ஆன்மீக & பயண ஒருங்கிணைப்பாளர்',
+      name: 'பன்னீர்செல்வம் (Panneerselvam)',
+      qual: 'தலைமைப் பயண ஒருங்கிணைப்பாளர்',
+      services: 'தனிப்பயன் பயணத் திட்டம் | AC வாகனங்கள் | தங்குமிடம் & சாத்வீக உணவு | அனைத்து முன்பதிவுகள்',
+      description: '34 புனிதக் கோவில்கள் தரிசனம், நவகிரக பரிகார வழிபாடுகள், AC வாகன முன்பதிவு (இன்னோவா, எர்டிகா, வேன்), தங்கும் விடுதி மற்றும் சாத்வீக உணவுக்கான முழுமையான ஒருங்கிணைப்பு.',
       phone: COMMON_PHONE,
       phoneRaw: COMMON_PHONE_RAW,
-      whatsappLink: 'https://wa.me/919025304681?text=Vanakkam%20S.Ishwarya%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20assistance%20with%20booking%20and%20payment%20confirmation.'
+      whatsappLink: 'https://wa.me/918220502766?text=Vanakkam%20Panneerselvam%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20information%20regarding%20travel%20packages%2C%20vehicles%20and%20temple%20bookings.'
     },
     hero: {
       tag: 'ஆன்மீகம் • பாரம்பரியம் • தனிப்பயன் திருத்தலப் பயணங்கள்',
@@ -503,8 +503,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       lead: 'உங்கள் நேரம், நோக்கம், வசதி மற்றும் வரவு செலவுக்கு ஏற்ப வடிவமைக்கப்பட்ட அர்த்தமுள்ள ஆன்மீக மற்றும் பாரம்பரியப் பயணங்கள்.',
       subLead: 'கும்பகோணம் மற்றும் புனித காவிரிப் பகுதி ஆலயங்களை நோக்கிய தனிப்பயனாக்கப்பட்ட தரிசனப் பயணங்கள்.',
       planBtn: '✦ உங்கள் பயணத்தை திட்டமிடுங்கள்',
-      whatsappBtn: '◉ வாட்ஸ்அப் (+91 90253 04681)',
-      callBtn: 'அழைக்கவும்: +91 90253 04681',
+      whatsappBtn: '◉ வாட்ஸ்அப் (+91 82205 02766)',
+      callBtn: 'அழைக்கவும்: +91 82205 02766',
       pillars: {
         astrology: 'ஜோதிட & பரிகாரத் தலங்கள்',
         routes: 'சோழ & காவிரி வழித்தடங்கள்',
@@ -514,15 +514,15 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     },
     contactForm: {
       title: 'நேரடி உடனடித் தொடர்பு',
-      subtitle: 'எஸ். சரண்யா அல்லது எஸ். ஐஸ்வர்யா ஆகியோரை +91 90253 04681 என்ற எண்ணில் வாட்ஸ்அப் அல்லது அழைப்பு மூலம் உடனே தொடர்பு கொள்ளவும்.',
+      subtitle: 'பன்னீர்செல்வம் அவர்களை +91 82205 02766 என்ற எண்ணில் வாட்ஸ்அப் அல்லது அழைப்பு மூலம் உடனே தொடர்பு கொள்ளவும்.',
       yourName: 'உங்கள் பெயர்',
       phoneLabel: 'தொலைபேசி / வாட்ஸ்அப் எண்',
       messageLabel: 'பயண விருப்பம் / தரிசிக்க வேண்டிய கோவில்கள்',
       namePlaceholder: 'எ.கா: ராமநாதன் / பிரியா / செந்தில்',
       messagePlaceholder: 'பயண தேதி, குடும்ப உறுப்பினர்கள் எண்ணிக்கை, முதியோர் உதவி போன்ற விவரங்களை குறிப்பிடவும்...',
-      sendBtn: 'வாட்ஸ்அப் வழியாக அனுப்பவும் (+91 90253 04681)',
+      sendBtn: 'வாட்ஸ்அப் வழியாக அனுப்பவும் (+91 82205 02766)',
       successTitle: 'தகவல் தயாரானது!',
-      successMessage: 'உங்கள் தகவல் வாட்ஸ்அப் உதவி மையத்திற்கு (+91 90253 04681) அனுப்பப்பட்டது.',
+      successMessage: 'உங்கள் தகவல் வாட்ஸ்அப் உதவி மையத்திற்கு (+91 82205 02766) அனுப்பப்பட்டது.',
       anotherBtn: 'மற்றொரு கேள்வியை அனுப்பவும்'
     },
     categories: {
@@ -563,10 +563,10 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       summaryTemplesSelected: 'தலங்கள் தேர்வு செய்யப்பட்டுள்ளன',
       summaryServiceTier: 'தேர்ந்தெடுக்கப்பட்ட சேவைத் தரம்',
       summaryAssistance: 'சிறப்பு உதவிகள்',
-      sendRouteWhatsApp: 'வாட்ஸ்அப் வழியாக அனுப்பவும் (+91 90253 04681)',
+      sendRouteWhatsApp: 'வாட்ஸ்அப் வழியாக அனுப்பவும் (+91 82205 02766)',
       copyRoute: 'பயண விவரத்தை நகலெடு',
       copiedAlert: 'பயண விவரம் நகலெடுக்கப்பட்டது!',
-      helpNotice: 'எஸ். சரண்யா & எஸ். ஐஸ்வர்யா மூலம் உடனடி உறுதிப்படுத்தல்: +91 90253 04681'
+      helpNotice: 'பன்னீர்செல்வம் மூலம் உடனடி உறுதிப்படுத்தல்: +91 82205 02766'
     },
     modal: {
       presidingDeity: 'மூலவர் மற்றும் அம்பாள் சந்நிதி',
@@ -665,7 +665,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         { title: 'முழுமையான தனிப்பயனாக்கம்', desc: 'உங்கள் ஜாதகம், முன்னோர்களின் பூர்வீகம் மற்றும் தனிப்பட்ட வேண்டுதல்களுக்கு ஏற்ப அமையும் பாதை.' },
         { title: 'முதியோர் & குடும்ப பராமரிப்பு', desc: 'சக்கர நாற்காலி, தரைத்தள அறைகள், மெதுவான நடை வேகம் மற்றும் கனிவான ஓட்டுநர்கள்.' },
         { title: '100% சாத்வீக உபசரிப்பு', desc: 'மனதிற்கு அமைதியளிக்கும் பாரம்பரிய டெல்டா சமையல் முறையில் தயாரிக்கப்பட்ட தூய சைவ உணவு.' },
-        { title: 'நேரடி ஒருங்கிணைப்பாளர்கள்', desc: 'எஸ். சரண்யா & எஸ். ஐஸ்வர்யா ஆகியோரை +91 90253 04681 எண்ணில் நேரடியாக அழைக்கலாம்.' }
+        { title: 'நேரடி ஒருங்கிணைப்பாளர்', desc: 'பன்னீர்செல்வம் அவர்களை +91 82205 02766 எண்ணில் நேரடியாக அழைக்கலாம்.' }
       ]
     },
     guideSection: {
@@ -713,26 +713,26 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       helpline: 'संपर्क अधिकारी'
     },
     contactBookingTitle: 'संपर्क एवं बुकिंग (CONTACT & BOOKING)',
-    contactBookingSubtitle: 'कुंभकोणम एवं कावेरी डेल्टा के दिव्य मंदिरों के दर्शन एवं सुगम यात्रा हेतु हेल्पलाइन: +91 90253 04681',
+    contactBookingSubtitle: 'कुंभकोणम एवं कावेरी डेल्टा के दिव्य मंदिरों के दर्शन एवं सुगम यात्रा हेतु हेल्पलाइन: +91 82205 02766',
     packageInfoDepartment: {
-      roleTitle: 'पैकेज एवं मंदिर जानकारी (PACKAGE & TEMPLE INFORMATION)',
-      name: 'एस. शरण्या (S. Saranya)',
-      qual: 'B.Tech',
-      services: 'यात्रा पैकेज | मंदिर विवरण | टूर सहायता (Travel Packages | Temple Details | Tour Assistance)',
-      description: '34 प्रमुख एवं दुर्लभ मंदिरों के दर्शन, नवग्रह पूजा, कालसर्प एवं पितृ दोष निवारण, मंदिर समय और यात्रा योजना की पूर्ण जानकारी।',
+      roleTitle: 'तीर्थ दर्शन, बुकिंग एवं संपूर्ण यात्रा समन्वयक',
+      name: 'पन्नीरसेल्वम (Panneerselvam)',
+      qual: 'मुख्य यात्रा समन्वयक',
+      services: 'दर्शन परिपथ | एसी वाहन व्यवस्था | सात्विक भोजन व आवास | संपूर्ण बुकिंग',
+      description: '34 पवित्र मंदिरों के दर्शन, नवग्रह पूजा, एसी वाहन (इनोवा, अर्टिगा, टेम्पो ट्रेवलर), होटल ठहरने एवं सात्विक भोजन की संपूर्ण एवं सुगम बुकिंग।',
       phone: COMMON_PHONE,
       phoneRaw: COMMON_PHONE_RAW,
-      whatsappLink: 'https://wa.me/919025304681?text=Vanakkam%20S.Saranya%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20information%20regarding%20travel%20packages%20and%20temple%20itineraries.'
+      whatsappLink: 'https://wa.me/918220502766?text=Vanakkam%20Panneerselvam%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20information%20regarding%20travel%20packages%2C%20vehicles%20and%20temple%20bookings.'
     },
     bookingPaymentDepartment: {
-      roleTitle: 'बुकिंग एवं भुगतान (BOOKINGS & PAYMENTS)',
-      name: 'एस. ऐश्वर्या (S. Ishwarya)',
-      qual: 'M.A.',
-      services: 'बुकिंग सहायता | भुगतान सुविधा | पुष्टि (Booking Support | Payment Assistance | Confirmation)',
-      description: 'एसी वाहन (इनोवा, अर्टिगा, टेम्पो ट्रेवलर), सात्विक भोजन, होटल ठहरने की व्यवस्था और आधिकारिक बुकिंग पुष्टि।',
+      roleTitle: 'तीर्थ दर्शन, बुकिंग एवं संपूर्ण यात्रा समन्वयक',
+      name: 'पन्नीरसेल्वम (Panneerselvam)',
+      qual: 'मुख्य यात्रा समन्वयक',
+      services: 'दर्शन परिपथ | एसी वाहन व्यवस्था | सात्विक भोजन व आवास | संपूर्ण बुकिंग',
+      description: '34 पवित्र मंदिरों के दर्शन, नवग्रह पूजा, एसी वाहन (इनोवा, अर्टिगा, टेम्पो ट्रेवलर), होटल ठहरने एवं सात्विक भोजन की संपूर्ण एवं सुगम बुकिंग।',
       phone: COMMON_PHONE,
       phoneRaw: COMMON_PHONE_RAW,
-      whatsappLink: 'https://wa.me/919025304681?text=Vanakkam%20S.Ishwarya%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20assistance%20with%20booking%20and%20payment%20confirmation.'
+      whatsappLink: 'https://wa.me/918220502766?text=Vanakkam%20Panneerselvam%20(Kumbakonam%20Temples%20Darshan)%2C%20I%20would%20like%20information%20regarding%20travel%20packages%2C%20vehicles%20and%20temple%20bookings.'
     },
     hero: {
       tag: 'आध्यात्मिक • ऐतिहासिक • व्यक्तिगत पावन यात्रा',
@@ -741,8 +741,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       lead: 'आपके समय, धार्मिक संकल्प, सुविधा और बजट के अनुकूल तैयार की गई विशेष कावेरी तीर्थ दर्शन यात्राएं।',
       subLead: 'कुंभकोणम, तंजावुर और मयिलादुथुराई के पावन चोल मंदिरों की सुखद एवं प्रामाणिक यात्रा।',
       planBtn: '✦ यात्रा योजना बनाएं',
-      whatsappBtn: '◉ व्हाट्सएप (+91 90253 04681)',
-      callBtn: 'कॉल करें: +91 90253 04681',
+      whatsappBtn: '◉ व्हाट्सएप (+91 82205 02766)',
+      callBtn: 'कॉल करें: +91 82205 02766',
       pillars: {
         astrology: 'ज्योतिष एवं दोष निवारण',
         routes: 'चोल एवं कावेरी मार्ग',
@@ -752,15 +752,15 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     },
     contactForm: {
       title: 'त्वरित सीधा संपर्क',
-      subtitle: 'एस. शरण्या अथवा एस. ऐश्वर्या से +91 90253 04681 (कॉल एवं व्हाट्सएप) पर तुरंत संपर्क करें।',
+      subtitle: 'पन्नीरसेल्वम से +91 82205 02766 (कॉल एवं व्हाट्सएप) पर तुरंत संपर्क करें।',
       yourName: 'आपका नाम',
       phoneLabel: 'मोबाइल / व्हाट्सएप नंबर',
       messageLabel: 'संदेश / रुचि के मंदिर',
       namePlaceholder: 'उदा. रामनाथन / शर्मा / प्रिया',
       messagePlaceholder: 'यात्रा की तारीखें, यात्रियों की संख्या, वरिष्ठजनों की सुविधा या विशेष मंदिर बताएं...',
-      sendBtn: 'व्हाट्सएप से भेजें (+91 90253 04681)',
+      sendBtn: 'व्हाट्सएप से भेजें (+91 82205 02766)',
       successTitle: 'संदेश तैयार है!',
-      successMessage: 'आपका विवरण व्हाट्सएप हेल्पलाइन (+91 90253 04681) को प्रेषित किया गया है।',
+      successMessage: 'आपका विवरण व्हाट्सएप हेल्पलाइन (+91 82205 02766) को प्रेषित किया गया है।',
       anotherBtn: 'दूसरा संदेश भेजें'
     },
     categories: {
@@ -801,10 +801,10 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       summaryTemplesSelected: 'मंदिर चयनित',
       summaryServiceTier: 'चयनित यात्रा श्रेणी',
       summaryAssistance: 'विशेष सहायता सम्मिलित',
-      sendRouteWhatsApp: 'व्हाट्सएप पर भेजें (+91 90253 04681)',
+      sendRouteWhatsApp: 'व्हाट्सएप पर भेजें (+91 82205 02766)',
       copyRoute: 'यात्रा विवरण कॉपी करें',
       copiedAlert: 'यात्रा विवरण कॉपी हो गया!',
-      helpNotice: 'एस. शरण्या एवं एस. ऐश्वर्या द्वारा त्वरित पुष्टि: +91 90253 04681'
+      helpNotice: 'पन्नीरसेल्वम द्वारा त्वरित पुष्टि: +91 82205 02766'
     },
     modal: {
       presidingDeity: 'प्रधान विग्रह एवं पावन गर्भगृह',
@@ -903,7 +903,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
         { title: 'पूर्णतः व्यक्तिगत परिपथ', desc: 'आपकी जन्म कुंडली, पूर्वजों की परंपरा एवं व्यक्तिगत प्रार्थनाओं के अनुसार यात्रा।' },
         { title: 'वरिष्ठ नागरिक एवं परिवार की देखभाल', desc: 'व्हीलचेयर सहायता, भूतल पर कमरे, कम पैदल दूरी एवं धैर्यवान चालक।' },
         { title: '100% शुद्ध सात्विक व्यवस्था', desc: 'पारंपरिक डेल्टा विधि से तैयार शुद्ध, पौष्टिक एवं सुपाच्य शाकाहारी भोजन।' },
-        { title: 'सीधे संपर्क अधिकारी', desc: 'एस. शरण्या एवं एस. ऐश्वर्या से +91 90253 04681 पर बिना किसी बिचौलिए के सीधे बात करें।' }
+        { title: 'सीधे संपर्क अधिकारी', desc: 'पन्नीरसेल्वम से +91 82205 02766 पर बिना किसी बिचौलिए के सीधे बात करें।' }
       ]
     },
     guideSection: {

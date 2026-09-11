@@ -19,7 +19,7 @@ export interface ItineraryMessageOptions {
 export interface ContactMessageOptions {
   name: string;
   phone: string;
-  recipient: 'saranya' | 'ishwarya';
+  recipient?: string;
   message: string;
 }
 
@@ -92,9 +92,8 @@ ${templeLines}
 
 எனக்கான தனிப்பயன் பயண வழித்தடம் (Route Map), கோவில் நடை திறக்கும் நேரங்கள் மற்றும் கட்டண விவரங்களை பகிருமாறு அன்புடன் கேட்டுக்கொள்கிறேன்.
 
-📞 தொடர்புக்கு: +91 90253 04681
-• எஸ். சரண்யா, B.Tech (தொகுப்பு & கோவில் விபரங்கள்)
-• எஸ். ஐஸ்வர்யா, M.A. (முன்பதிவு & கட்டண உதவி)
+📞 தொடர்புக்கு: +91 82205 02766
+• பன்னீர்செல்வம் (Panneerselvam) - தொகுப்பு, கோவில் விபரம் & முன்பதிவு
 • இணையதளம்: www.kumbakonamtemplesdharsan.com
 • மின்னஞ்சல்: info@kumbakonamtemplesdharsan.com`;
   }
@@ -115,9 +114,8 @@ ${templeLines}
 
 कृपया यात्रा मार्ग (Route Map), शुभ दर्शन समय एवं विस्तृत कोटेशन साझा करें।
 
-📞 संपर्क: +91 90253 04681
-• एस. शरण्या, B.Tech (पैकेज एवं मंदिर जानकारी)
-• एस. ऐश्वर्या, M.A. (बुकिंग एवं भुगतान सहायता)
+📞 संपर्क: +91 82205 02766
+• पन्नीरसेल्वम (Panneerselvam) - पैकेज, मंदिर जानकारी एवं बुकिंग
 • वेबसाइट: www.kumbakonamtemplesdharsan.com
 • ईमेल: info@kumbakonamtemplesdharsan.com`;
   }
@@ -138,9 +136,8 @@ ${templeLines}
 
 Please share my custom route map, temple darshan timing schedule, and customized quote.
 
-📞 Contact: +91 90253 04681
-• S. Saranya, B.Tech (Packages & Temple Info)
-• S. Ishwarya, M.A. (Bookings & Payments)
+📞 Contact: +91 82205 02766
+• Panneerselvam (Packages, Temple Info & Bookings)
 • Website: www.kumbakonamtemplesdharsan.com
 • Email: info@kumbakonamtemplesdharsan.com`;
 }
@@ -153,11 +150,8 @@ export function generateContactWhatsAppMessage(
   lang: Language
 ): string {
   const t = TRANSLATIONS[lang];
-  const saranya = t.packageInfoDepartment;
-  const ishwarya = t.bookingPaymentDepartment;
-  const targetOfficer = options.recipient === 'saranya'
-    ? `${saranya.name}, ${saranya.qual} (${saranya.roleTitle})`
-    : `${ishwarya.name}, ${ishwarya.qual} (${ishwarya.roleTitle})`;
+  const coordinator = t.packageInfoDepartment;
+  const targetOfficer = `${coordinator.name} (${coordinator.roleTitle})`;
 
   if (lang === 'ta') {
     return `✨ கும்பகோணம் டெம்பிள்ஸ் தர்ஷன் ✨

@@ -189,7 +189,7 @@ export const TempleSelector: React.FC<TempleSelectorProps> = ({
       return `${idx + 1}. ${loc.name} (${temple.nameEnglish}) - [${loc.pariharam || loc.rulingPlanetOrFeature}]`;
     }).join('\n');
 
-    const summary = `${t.siteTitle} - ${t.selector.summaryTitle}\n\nPackage: ${currentPkgMeta.title}\nTier: ${tierName}\nTravel Date: ${travelDate || 'Pending'}\nGroup Size: ${groupSize}\n\nTemples (${selectedTemplesList.length}):\n${templeLines}\n\nContacts & WhatsApp (+91 90253 04681):\n• S. Saranya, B.Tech (Packages & Temple Info)\n• S. Ishwarya, M.A. (Bookings & Payments)\n• Website: ${t.website}\n• Email: ${t.email}`;
+    const summary = `${t.siteTitle} - ${t.selector.summaryTitle}\n\nPackage: ${currentPkgMeta.title}\nTier: ${tierName}\nTravel Date: ${travelDate || 'Pending'}\nGroup Size: ${groupSize}\n\nTemples (${selectedTemplesList.length}):\n${templeLines}\n\nContacts & WhatsApp (+91 82205 02766):\n• Panneerselvam (Packages, Temple Info & Bookings)\n• Website: ${t.website}\n• Email: ${t.email}`;
 
     navigator.clipboard.writeText(summary);
     setStatusMessage(`✓ ${t.selector.copiedAlert}`);

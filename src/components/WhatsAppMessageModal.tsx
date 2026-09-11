@@ -64,7 +64,7 @@ export const WhatsAppMessageModal: React.FC<WhatsAppMessageModalProps> = ({
 
   const handleSendWhatsApp = () => {
     if (!concernMessage) return;
-    const url = `https://wa.me/919025304681?text=${encodeURIComponent(concernMessage)}`;
+    const url = `https://wa.me/918220502766?text=${encodeURIComponent(concernMessage)}`;
     window.open(url, '_blank');
     onClose();
   };
@@ -78,8 +78,8 @@ export const WhatsAppMessageModal: React.FC<WhatsAppMessageModalProps> = ({
       step2: 'Step 2: Review Message in Chosen Language',
       copyBtn: 'Copy Message',
       copiedBtn: 'Message Copied!',
-      sendBtn: 'Send via WhatsApp (+91 90253 04681)',
-      coordinatorNote: 'Official Coordinator: S. Saranya, B.Tech & S. Ishwarya, M.A.',
+      sendBtn: 'Send via WhatsApp (+91 82205 02766)',
+      coordinatorNote: 'Official Coordinator: Panneerselvam (+91 82205 02766)',
       closeBtn: 'Close'
     },
     ta: {
@@ -89,8 +89,8 @@ export const WhatsAppMessageModal: React.FC<WhatsAppMessageModalProps> = ({
       step2: 'படி 2: தேர்வு செய்த மொழியில் செய்தியை சரிபார்க்கவும்',
       copyBtn: 'செய்தியை நகலெடுக்க',
       copiedBtn: 'செய்தி நகலெடுக்கப்பட்டது!',
-      sendBtn: 'வாட்ஸ்அப்பில் அனுப்பவும் (+91 90253 04681)',
-      coordinatorNote: 'அதிகாரப்பூர்வ ஒருங்கிணைப்பாளர்கள்: எஸ். சரண்யா & எஸ். ஐஸ்வர்யா',
+      sendBtn: 'வாட்ஸ்அப்பில் அனுப்பவும் (+91 82205 02766)',
+      coordinatorNote: 'அதிகாரப்பூர்வ ஒருங்கிணைப்பாளர்: பன்னீர்செல்வம் (+91 82205 02766)',
       closeBtn: 'மூடு'
     },
     hi: {
@@ -100,8 +100,8 @@ export const WhatsAppMessageModal: React.FC<WhatsAppMessageModalProps> = ({
       step2: 'चरण 2: चयनित भाषा में संदेश की समीक्षा करें',
       copyBtn: 'संदेश कॉपी करें',
       copiedBtn: 'संदेश कॉपी हो गया!',
-      sendBtn: 'व्हाट्सएप पर भेजें (+91 90253 04681)',
-      coordinatorNote: 'आधिकारिक समन्वयक: एस. शरण्या & एस. ऐश्वर्या',
+      sendBtn: 'व्हाट्सएप पर भेजें (+91 82205 02766)',
+      coordinatorNote: 'आधिकारिक समन्वयक: पन्नीरसेल्वम (+91 82205 02766)',
       closeBtn: 'बंद करें'
     }
   }[selectedLang];
