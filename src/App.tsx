@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { AuspiciousTimingRibbon } from './components/AuspiciousTimingRibbon';
 import { About } from './components/About';
 import { Experiences } from './components/Experiences';
 import { Services } from './components/Services';
@@ -80,6 +81,8 @@ export function App() {
           onPlanClick={scrollToSelection}
           currentLang={currentLang}
         />
+
+        <AuspiciousTimingRibbon currentLang={currentLang} />
 
         <About currentLang={currentLang} />
         

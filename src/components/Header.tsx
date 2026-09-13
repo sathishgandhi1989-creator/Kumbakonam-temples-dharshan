@@ -74,6 +74,7 @@ export const Header: React.FC<HeaderProps> = ({ onPlanClick, currentLang, onSele
 
   const NAV_ITEMS = [
     { name: t.nav.home, href: '#' },
+    { name: currentLang === 'ta' ? 'நல்ல நேரம்' : currentLang === 'hi' ? 'शुभ मुहूर्त' : 'Timings', href: '#timings' },
     { name: t.nav.about, href: '#about' },
     { name: t.nav.experiences, href: '#experiences' },
     { name: t.nav.services, href: '#services' },
@@ -101,6 +102,14 @@ export const Header: React.FC<HeaderProps> = ({ onPlanClick, currentLang, onSele
 
           {/* Right: Official Website + Language Selector + Quick Link to Designated Contact Area */}
           <div className="flex items-center gap-2 sm:gap-3 text-xs">
+            <a
+              href="#timings"
+              className="bg-[#4d0c08] hover:bg-[#68110b] text-[#f4bb4f] hover:text-white px-2 py-1 rounded text-[11px] font-bold transition-colors border border-[#831e17] flex items-center gap-1 cursor-pointer"
+              title="2026 Auspicious Timings, Rahu Kalam & Temple Hours"
+            >
+              <span>⏱️ {currentLang === 'ta' ? 'நல்ல நேரம்' : currentLang === 'hi' ? 'शुभ मुहूर्त' : '2026 Timings'}</span>
+            </a>
+
             <a
               href={t.websiteUrl}
               target="_blank"

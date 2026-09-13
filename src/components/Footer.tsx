@@ -79,6 +79,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang = 'en' }) => {
               {currentLang === 'ta' ? 'விரைவு வழிசெலுத்தல்' : currentLang === 'hi' ? 'त्वरित नेविगेशन' : 'Quick Navigation'}
             </h4>
             <ul className="space-y-2 text-xs">
+              <li><a href="#timings" className="text-[#f4bb4f] hover:underline font-semibold transition-colors">⏱️ {currentLang === 'ta' ? '2026 நல்ல நேரம் & ராகு காலம்' : currentLang === 'hi' ? '2026 शुभ मुहूर्त व राहु काल' : '2026 Auspicious Timings'}</a></li>
               <li><a href="#about" className="hover:text-white transition-colors">{t.nav.about}</a></li>
               <li><a href="#experiences" className="hover:text-white transition-colors">{t.nav.experiences}</a></li>
               <li><a href="#services" className="hover:text-white transition-colors">{t.nav.services}</a></li>
